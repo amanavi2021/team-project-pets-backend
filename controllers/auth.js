@@ -4,11 +4,11 @@ const gravatar = require("gravatar");
 const path = require("path");
 const fs = require("fs/promises");
 const Jimp = require("jimp");
-const {nanoid} = require("nanoid");
 
-const { HttpError, ctrlWrapper, transporter } = require("../helpers");
+const { HttpError, ctrlWrapper } = require("../helpers");
 const { User } = require("../models/user");
-const { SECRET_KEY, BASE_URL } = process.env;
+const { SECRET_KEY } = process.env;
+
 const { schemas }  = require("../models/user");
 const avatarDir = path.join(__dirname, "../", "public", "avatars");
 
@@ -25,16 +25,8 @@ if (user) {
 
 const hashPassword = await bcrypt.hash(password, 10);
 const avatarURL = gravatar.url(email);
-const verificationToken = nanoid();
-const newUser = await User.create({...req.body, password: hashPassword, avatarURL, verificationToken});
 
-const verifyEmail = {
-    from: "amanavi2021@meta.ua",
-    to:email,
-    subject: "Verify email",
-    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Click verify email</a>`
-};
- await transporter.sendMail(verifyEmail);
+const newUser = await User.create({...req.body, password: hashPassword, avatarURL});
 
 res.status(201).json({
     user: {
@@ -43,49 +35,6 @@ res.status(201).json({
     }
 })
 };
-
-const verifyEmail = async(req, res) =>{
-    console.log("here");
-    const {verificationToken} = req.params;
-    console.log('verificationToken', verificationToken);
-    const user = await User.findOne({verificationToken});
-    if (!user) {
-        throw HttpError(404, "User not found")
-    };
-
-    await User.findByIdAndUpdate(user._id, {verify: true, verificationToken: null});
-
-    res.status(200).json({
-        message: "Verification successful",
-    })
-}
-
-const resendVerifyMail = async(req, res) => {
-    const {email} = req.body;
-    const {error} = schemas.emailSchema.validate(req.body);
-    if (error) {
-        throw HttpError(400, "missing required field email")
-    }
-    const user = await User.findOne({email});
-    if (!user) {
-        throw HttpError(400, "Email not found");
-    };
-    if (user.verify) {
-        throw HttpError(400, "Verification has already been passed");
-    };
-
-    const verifyEmail = {
-        from: "amanavi2021@meta.ua",
-        to:email,
-        subject: "Verify email",
-        html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${user.verificationToken}">Click verify email</a>`
-    };
-
-    await transporter.sendMail(verifyEmail);
-    res.status(200).json({
-        message: "Verification email sent"
-    })    
-}
 
 
 const login = async(req, res) => {
@@ -168,8 +117,6 @@ await fs.rename(tempUpload, resultUpload);
 
 module.exports = {
     register: ctrlWrapper(register),
-    verifyEmail: ctrlWrapper(verifyEmail),
-    resendVerifyMail: ctrlWrapper(resendVerifyMail),
     login: ctrlWrapper(login),
     logout: ctrlWrapper(logout),
     getCurrent: ctrlWrapper(getCurrent),
