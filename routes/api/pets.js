@@ -2,15 +2,20 @@ const express = require("express");
 
 const ctrl = require("../../controllers/pets");
 const { schemas } = require("../../models/pet");
-const { isValidId, authenticate, validateBody, upload} = require("../../middlewares");
+const {
+  isValidId,
+  authenticate,
+  validateBody,
+  upload,
+} = require("../../middlewares");
 
 const router = express.Router();
 
 router.post(
   "/",
   authenticate,
-  validateBody(schemas.addPetSchema),
   upload.single("avatar"),
+  validateBody(schemas.addPetSchema),
   ctrl.addPet
 );
 
