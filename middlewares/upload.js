@@ -3,16 +3,17 @@ const path = require("path");
 
 const tempDir = path.join(__dirname, "../", "tmp");
 const multerConfig = multer.diskStorage({
-    destination: tempDir,
-    filename: (req, file, cb) => {
+  destination: tempDir,
+  filename: (req, file, cb) => {
     cb(null, file.originalname);
-    }
+  },
 });
 
 const upload = multer({
-    storage: multerConfig,
-})
+  storage: multerConfig,
+  limits: {
+    fileSize: 3 * 1024 * 1024,
+  },
+});
 
 module.exports = upload;
-
-
