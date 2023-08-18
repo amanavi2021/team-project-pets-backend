@@ -5,8 +5,8 @@ const path = require("path");
 const fs = require("fs/promises");
 const Jimp = require("jimp");
 
-const { HttpError, ctrlWrapper } = require("../helpers");
-const { User } = require("../models/user");
+const { HttpError, ctrlWrapper } = require("../../helpers");
+const { User } = require("../../models/user");
 const { SECRET_KEY } = process.env;
 
 const avatarDir = path.join(__dirname, "../", "public", "avatars");
