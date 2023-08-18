@@ -10,18 +10,18 @@ const petSchema = new Schema(
       type: String,
       minlength: [2, "Name must be at least 2 characters"],
       maxlength: [16, "Name can't exceed 16 characters"],
-      require: [true, "Set name for your pet"],
+      required: [true, "Set name for your pet"],
     },
     date: {
       type: String,
       match: [dateRegexp, "Use date format DD.MM.YYYY"],
-      require: [true, "Set birthday for your pet"],
+      required: [true, "Set birthday for your pet"],
     },
     type: {
       type: String,
       minlength: [2, "Type must be at least 2 characters"],
       maxlength: [16, "Type can't exceed 16 characters"],
-      require: [true, "Set type for your pet"],
+      required: [true, "Set type for your pet"],
     },
     imageURL: {
       type: String,
@@ -30,7 +30,7 @@ const petSchema = new Schema(
     comments: {
       type: String,
       maxlength: [120, "Comment can't exceed 120 characters"],
-      require: [true, "Set comment for your pet"],
+      required: [true, "Set comment for your pet"],
     },
     owner: {
       type: Schema.Types.ObjectId,
