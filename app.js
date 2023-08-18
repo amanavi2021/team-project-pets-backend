@@ -1,6 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+
+
 require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
@@ -14,6 +16,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+app.use(cookieParser());
 
 app.use("/api/users", authRouter);
 app.use("/api/pets", petsRouter);
