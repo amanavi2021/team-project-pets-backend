@@ -14,7 +14,7 @@ const router = express.Router();
 router.post(
   "/",
   authenticate,
-  upload.single("avatar"),
+  upload.single("image"),
   validateBody(schemas.addPetSchema),
   ctrl.addPet
 );
