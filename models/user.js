@@ -42,7 +42,7 @@ userSchema.post("save", handleMongooseError);
 
 
 
-////////Joi schemas
+// //////Joi schemas
 
 const registrationSchema = Joi.object({
   // eslint-disable-next-line
@@ -52,11 +52,11 @@ const registrationSchema = Joi.object({
 // eslint-disable-next-line
   name: Joi.string().required().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
   // eslint-disable-next-line
-  phone: Joi.string().required().pattern(/^\+\d{12}$/),
+  // phone: Joi.string().required().pattern(/^\+\d{12}$/),
   // eslint-disable-next-line
-  birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
+  // birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
   // eslint-disable-next-line
-  city: Joi.string().required(),
+  // city: Joi.string().required(),
 });
 
 
