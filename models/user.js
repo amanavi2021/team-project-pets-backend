@@ -36,6 +36,10 @@ const userSchema = new Schema({
         type: String,
         default: '',
       },
+      imgId: {
+        type: String,
+        default: null,
+    },
 },{versionKey:false, timestamps: true});
 
 userSchema.post("save", handleMongooseError);

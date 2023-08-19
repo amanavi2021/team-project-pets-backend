@@ -1,5 +1,5 @@
 const { User } = require('../../models/user');
-const { HttpError } = require('../../helpers/HttpError');
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
 const refresh = async (req, res) => {
     const { refreshToken } = req.cookies;
@@ -32,4 +32,6 @@ const refresh = async (req, res) => {
     });
 };
 
-module.exports = refresh;
+module.exports = {
+    refresh: ctrlWrapper(refresh),
+};

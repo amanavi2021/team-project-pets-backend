@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 
-const { User, schemas } = require('../../models/user');
+const { User } = require('../../models/user');
 const { tokens } = require('../../helpers/tokens');
+const { HttpError, ctrlWrapper } = require('../../helpers');
 
 
 const login = async (req, res) => {
@@ -40,4 +41,6 @@ const login = async (req, res) => {
 };
 
 
-module.exports = login;
+module.exports = {
+    login: ctrlWrapper(login),
+};
