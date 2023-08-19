@@ -21,17 +21,18 @@ const removePet = async (req, res) => {
     message: "Delete success",
   });
 };
+// перенесли у controllers/auth/current
 
-const getAllPets = async (req, res) => {
-  const { _id: owner } = req.user;
-  const customPets = { owner };
+// const getAllPets = async (req, res) => {
+//   const { _id: owner } = req.user;
+//   const customPets = { owner };
 
-  const result = await Pet.find(customPets, "-createdAt -updatedAt").populate(
-    "owner",
-    "name"
-  );
-  res.json(result);
-};
+//   const result = await Pet.find(customPets, "-createdAt -updatedAt").populate(
+//     "owner",
+//     "name"
+//   );
+//   res.json(result);
+// };
 
 // const updatePetAvatar = async (req, res) => {
 //   const { _id } = req.user;
@@ -57,6 +58,6 @@ const getAllPets = async (req, res) => {
 module.exports = {
   addPet: ctrlWrapper(addPet),
   removePet: ctrlWrapper(removePet),
-  getAllPets: ctrlWrapper(getAllPets),
+  // getAllPets: ctrlWrapper(getAllPets),
   //   updatePetAvatar: ctrlWrapper(updatePetAvatar),
 };
