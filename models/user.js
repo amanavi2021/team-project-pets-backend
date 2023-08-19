@@ -34,7 +34,7 @@ const userSchema = new Schema({
   },
   birthday: {
     type: String,
-    default: '01.01.2001',
+    default: '01-01-2001',
   },
   avatarURL: {
     type: String,
@@ -49,32 +49,40 @@ userSchema.post("save", handleMongooseError);
 // ////// Joi schemas
 
 const registrationSchema = Joi.object({
-  // eslint-disable-next-line
+// eslint-disable-next-line
   password: Joi.string().required().pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,16}$/),
-    // eslint-disable-next-line
+// eslint-disable-next-line
   email: Joi.string().required().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).min(2).max(255),
 // eslint-disable-next-line
   name: Joi.string().required().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
-  // eslint-disable-next-line
-  // phone: Joi.string().required().pattern(/^\+\d{12}$/),
-  // eslint-disable-next-line
-  // birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
-  // eslint-disable-next-line
-  // city: Joi.string().required(),
 });
 
 
 const loginSchema = Joi.object({
-  // eslint-disable-next-line
+// eslint-disable-next-line
   password: Joi.string().required().pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,16}$/),
-    // eslint-disable-next-line
+// eslint-disable-next-line
   email: Joi.string().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).min(2).max(255).required(),
 });
 
+const updateSchema = Joi.object({
+// eslint-disable-next-line
+  email: Joi.string().required().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).min(2).max(255),
+// eslint-disable-next-line
+  name: Joi.string().required().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
+// eslint-disable-next-line
+   phone: Joi.string().required().pattern(/^\+\d{12}$/),
+// eslint-disable-next-line
+   birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
+// eslint-disable-next-line
+   city: Joi.string().required(),
+})
+
 
 const schemas = {
-    registrationSchema,
-    loginSchema, 
+  registrationSchema,
+  loginSchema, 
+  updateSchema,
 };
 
 
