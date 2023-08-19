@@ -5,7 +5,7 @@ const update = async(req, res) => {
     const { _id } = req.user;
     const { name, email, birthday, phone, city } = req.body;
     const avatarURL = req.file ? req.file.path : req.user.avatarURL;
-    const imgId = req.file ? req.file.filename : req.user.imgId;
+  
 
   const updateData = await User.findOneAndUpdate(_id,
     {
@@ -15,7 +15,6 @@ const update = async(req, res) => {
       phone,
       city,
       avatarURL,
-      imgId,
     },
     {
       new: true,
@@ -32,8 +31,6 @@ const update = async(req, res) => {
             city: updateData.city,
             birthday: updateData.birthday,
             avatarURL: updateData.avatarURL,
-            favorite: updateData.favorite,
-            imgId: updateData.imgId,
         },
     });
 };

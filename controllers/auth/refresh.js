@@ -1,5 +1,10 @@
+const jwt = require("jsonwebtoken");
+
+const { REFRESH_SECRET_KEY } = process.env;
 const { User } = require('../../models/user');
-const { HttpError, ctrlWrapper } = require('../../helpers');
+const { HttpError } = require('../../helpers');
+const { tokens } = require('../../helpers/tokens');
+
 
 const refresh = async (req, res) => {
     const { refreshToken } = req.cookies;
@@ -7,31 +12,33 @@ const refresh = async (req, res) => {
     if (!refreshToken) {
         throw HttpError(401, "Not authorized");
     };
+    
+    try {
+        const { id } = jwt.verify(refreshToken, REFRESH_SECRET_KEY);
+        const isExist = await User.findOne({ refreshToken: newToken });
 
-    const { email } = req.body;
+        if (!isExist) {
+            throw HttpError(403, "Refresh Token invalid");
+        };
 
-    const user = await User.findOne({ email });
+        const { token, refreshToken } = await tokens(id);
 
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-    });
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            sameSite: 'None',
+            secure: true,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
 
-    res.json({
-        code: 200,
-        status: 'success',
-        refreshToken,
-        user: {
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            city: user.city,
-            birthday: user.birthday,
-            avatarURL: user.avatarURL,
-        },
-    });
+        res.json({
+            code: 200,
+            status: 'success',
+            token,
+        });
+
+    } catch (error) {
+        throw HttpError(403, error.message);
+    }
 };
 
-module.exports = {
-    refresh: ctrlWrapper(refresh),
-};
+module.exports = refresh;

@@ -3,7 +3,7 @@ const gravatar = require('gravatar');
 
 const { User } = require('../../models/user');
 const { tokens } = require('../../helpers/tokens');
-const { HttpError, ctrlWrapper } = require('../../helpers');
+const { HttpError} = require('../../helpers');
 
 
 const login = async (req, res) => {
@@ -41,6 +41,4 @@ const login = async (req, res) => {
 };
 
 
-module.exports = {
-    login: ctrlWrapper(login),
-};
+module.exports = login;

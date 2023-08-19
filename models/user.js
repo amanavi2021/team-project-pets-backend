@@ -3,50 +3,54 @@ const Joi = require("joi");
 const { handleMongooseError } = require("../helpers");
 
 const userSchema = new Schema({
-    password: {
-        type: String,
-        required: [true, 'Password is required'],
-      },
-      email: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-      },
-      token: {
-        type: String,
-        default: null,
-      }, 
-      name: {
-        type: String,
-        required: [true, 'Name is required'],
-      },
-      phone: {
-        type: String,
-        default: null,
-      },
-      city: {
-        type: String,
-        default: null,
-      },
-      birthday: {
-        type: String,
-        default: '01.01.2001',
-      },
-      avatarURL: {
-        type: String,
-        default: '',
-      },
-      imgId: {
-        type: String,
-        default: null,
-    },
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Email is required'],
+    unique: true,
+  },
+  token: {
+    type: String,
+    default: null,
+  }, 
+  refreshToken: {
+    type: String,
+    default: null,
+  },
+  name: {
+    type: String,
+    required: [true, 'Name is required'],
+  },
+  phone: {
+    type: String,
+    default: null,
+  },
+  city: {
+    type: String,
+    default: null,
+  },
+  birthday: {
+    type: String,
+    default: '01.01.2001',
+  },
+  avatarURL: {
+    type: String,
+    default: '',
+  },
+  imgId: {
+    type: String,
+    default: null,
+  },
 },{versionKey:false, timestamps: true});
 
 userSchema.post("save", handleMongooseError);
 
 
 
-////////Joi schemas
+//////// Joi schemas
 
 const registrationSchema = Joi.object({
   // eslint-disable-next-line
@@ -56,11 +60,11 @@ const registrationSchema = Joi.object({
 // eslint-disable-next-line
   name: Joi.string().required().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
   // eslint-disable-next-line
-  phone: Joi.string().required().pattern(/^\+\d{12}$/),
+  // phone: Joi.string().required().pattern(/^\+\d{12}$/),
   // eslint-disable-next-line
-  birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
+  // birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
   // eslint-disable-next-line
-  city: Joi.string().required(),
+  // city: Joi.string().required(),
 });
 
 

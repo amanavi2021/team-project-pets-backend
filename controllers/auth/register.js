@@ -3,7 +3,7 @@ const gravatar = require('gravatar');
 
 const { User } = require('../../models/user');
 const { tokens } = require('../../helpers/tokens');
-const { HttpError, ctrlWrapper } = require('../../helpers');
+const { HttpError} = require('../../helpers');
 
 
 const register = async (req, res) => {
@@ -41,7 +41,6 @@ const register = async (req, res) => {
         user: {
             email: newUser.email,
             name: newUser.name,
-            email: newUser.email,
             phone: newUser.phone,
             city: newUser.city,
             birthday: newUser.birthday,
@@ -51,6 +50,4 @@ const register = async (req, res) => {
 };
 
 
-module.exports = {
-    register: ctrlWrapper(register),
-};
+module.exports = register;

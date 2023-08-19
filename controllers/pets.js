@@ -1,29 +1,11 @@
-const path = require("path");
-const fs = require("fs/promises");
-// const Jimp = require("jimp");
 
 const { HttpError, ctrlWrapper } = require("../helpers");
 const { Pet } = require("../models/pet");
 
-const petsAvatarsDir = path.join(__dirname, "../", "public", "pets");
 
 const addPet = async (req, res) => {
-  const { _id: owner } = req.user;
-
-  const { path: tempUpload, originalname } = req.file;
-  const filename = `${owner}_${originalname}`;
-  const petAvatarUpload = path.join(petsAvatarsDir, filename);
-
-  await fs.rename(tempUpload, petAvatarUpload);
-
-  // Я не знаю чи ми змінюємо розміри картинки,
-  // якщо ні то цей блок закоментований не потрібний
-
-  //   const image = await Jimp.read(petAvatarUpload);
-  //   await image.resize(450, 450);
-  //   await image.writeAsync(petAvatarUpload);
-
-  const imageURL = path.join("pets", filename);
+const { _id: owner } = req.user;
+ const imageURL = req.file.path;
 
   const result = await Pet.create({ ...req.body, imageURL, owner });
   res.status(201).json(result);

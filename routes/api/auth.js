@@ -17,7 +17,10 @@ router.post("/logout", authenticate, ctrl.logout);
 router.get('/refresh', ctrl.refresh);
 
 //ендпоїнт оновлення даних користувача
-router.patch('/update', authenticate, upload.single('avatarURL'), ctrl.updateUser);
+router.patch('/update', authenticate, upload.single('avatarURL'), ctrl.update);
+
+//ендпоінт даних поточного користувача
+router.get("/current", authenticate, ctrl.current);
 
 
 
