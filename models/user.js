@@ -3,46 +3,54 @@ const Joi = require("joi");
 const { handleMongooseError } = require("../helpers");
 
 const userSchema = new Schema({
-    password: {
-        type: String,
-        required: [true, 'Password is required'],
-      },
-      email: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-      },
-      token: {
-        type: String,
-        default: null,
-      }, 
-      name: {
-        type: String,
-        required: [true, 'Name is required'],
-      },
-      phone: {
-        type: String,
-        default: null,
-      },
-      city: {
-        type: String,
-        default: null,
-      },
-      birthday: {
-        type: String,
-        default: '01.01.2001',
-      },
-      avatarURL: {
-        type: String,
-        default: '',
-      },
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Email is required'],
+    unique: true,
+  },
+  token: {
+    type: String,
+    default: null,
+  }, 
+  refreshToken: {
+    type: String,
+    default: null,
+  },
+  name: {
+    type: String,
+    required: [true, 'Name is required'],
+  },
+  phone: {
+    type: String,
+    default: null,
+  },
+  city: {
+    type: String,
+    default: null,
+  },
+  birthday: {
+    type: String,
+    default: '01.01.2001',
+  },
+  avatarURL: {
+    type: String,
+    default: '',
+  },
+  imgId: {
+    type: String,
+    default: null,
+  },
 },{versionKey:false, timestamps: true});
 
 userSchema.post("save", handleMongooseError);
 
 
 
-// //////Joi schemas
+//////// Joi schemas
 
 const registrationSchema = Joi.object({
   // eslint-disable-next-line

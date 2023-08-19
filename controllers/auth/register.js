@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 
-const { User, schemas } = require('../../models/user');
+const { User } = require('../../models/user');
 const { tokens } = require('../../helpers/tokens');
+const { HttpError} = require('../../helpers');
 
 
 const register = async (req, res) => {

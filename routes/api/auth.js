@@ -16,12 +16,12 @@ router.post("/logout", authenticate, ctrl.logout);
 //ендпоінт рефрешу токена (якщо токен доступу протух)
 router.get('/refresh', ctrl.refresh);
 
+//ендпоїнт оновлення даних користувача
+router.patch('/update', authenticate, upload.single('avatarURL'), ctrl.update);
 
 //ендпоінт даних поточного користувача
 router.get("/current", authenticate, ctrl.current);
 
-//router.patch("/subscription", authenticate, validateBody(schemas.updateSubscriptionSchema), ctrl.updateSubscription);
 
-//router.patch("/avatars", authenticate, upload.single("avatar"), ctrl.updateAvatar)
 
 module.exports = router;
