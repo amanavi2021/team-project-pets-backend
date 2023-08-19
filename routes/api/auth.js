@@ -17,8 +17,8 @@ router.post("/logout", authenticate, ctrl.logout);
 router.get('/refresh', ctrl.refresh);
 
 
-
-//router.get("/current", authenticate, ctrl.getCurrent);
+//ендпоінт даних поточного користувача
+router.get("/current", authenticate, ctrl.current);
 
 //router.patch("/subscription", authenticate, validateBody(schemas.updateSubscriptionSchema), ctrl.updateSubscription);
 
