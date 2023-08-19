@@ -1,6 +1,4 @@
-const bcrypt = require('bcrypt');
-const gravatar = require('gravatar');
-
+const bcrypt = require("bcrypt");
 const { User } = require('../../models/user');
 const { tokens } = require('../../helpers/tokens');
 const { HttpError} = require('../../helpers');
@@ -14,6 +12,11 @@ const login = async (req, res) => {
         throw HttpError(409, "User with this email not found");
     };
     
+    const passwordCompare = await bcrypt.compare(password, user.password);
+if (!passwordCompare) {
+    throw HttpError(401, "Email or password is wrong");
+}
+
     const { token, refreshToken } = await tokens(user._id);
 
     await User.findByIdAndUpdate(user._id, { token, refreshToken });
@@ -27,15 +30,13 @@ const login = async (req, res) => {
         code: 200,
         status: "success",
         token,
-        refreshToken,
         user: {
-            email: newUser.email,
-            name: newUser.name,
-            email: newUser.email,
-            phone: newUser.phone,
-            city: newUser.city,
-            birthday: newUser.birthday,
-            avatarURL: newUser.avatarURL,
+            email: user.email,
+            name: user.name,
+            phone: user.phone,
+            city: user.city,
+            birthday: user.birthday,
+            avatarURL: user.avatarURL,
         },
     });
 };

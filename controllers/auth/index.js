@@ -11,7 +11,7 @@ const { ctrlWrapper } = require('../../helpers');
 
 
 module.exports = {
-    register: ctrlWrapper(refresh),
+    register: ctrlWrapper(register),
     login: ctrlWrapper(login),
     refresh: ctrlWrapper(refresh),
     logout: ctrlWrapper(logout),

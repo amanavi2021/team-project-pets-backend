@@ -13,7 +13,7 @@ const storage = new CloudinaryStorage({
   params: async (req, file) => {
     // Determine the folder based on file properties or request data
     let folder;
-    if (file.fieldname === 'avatar') {
+    if (file.fieldname === 'avatarURL') {
       folder = 'users';
     } else {
       folder = 'pets';

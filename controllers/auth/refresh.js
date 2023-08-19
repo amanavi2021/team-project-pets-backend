@@ -7,15 +7,15 @@ const { tokens } = require('../../helpers/tokens');
 
 
 const refresh = async (req, res) => {
-    const { refreshToken } = req.cookies;
+    const reqRefToken = req.cookies.refreshToken;
 
-    if (!refreshToken) {
+    if (!reqRefToken) {
         throw HttpError(401, "Not authorized");
     };
     
     try {
-        const { id } = jwt.verify(refreshToken, REFRESH_SECRET_KEY);
-        const isExist = await User.findOne({ refreshToken: newToken });
+        const { id } = jwt.verify(reqRefToken, REFRESH_SECRET_KEY);
+        const isExist = await User.findOne({ reqRefToken});
 
         if (!isExist) {
             throw HttpError(403, "Refresh Token invalid");
