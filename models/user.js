@@ -67,15 +67,15 @@ const loginSchema = Joi.object({
 
 const updateSchema = Joi.object({
 // eslint-disable-next-line
-  email: Joi.string().required().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).min(2).max(255),
+  email: Joi.string().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).min(2).max(255),
 // eslint-disable-next-line
-  name: Joi.string().required().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
+  name: Joi.string().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
 // eslint-disable-next-line
-   phone: Joi.string().required().pattern(/^\+\d{12}$/),
+   phone: Joi.string().pattern(/^\+\d{12}$/),
 // eslint-disable-next-line
-   birthday: Joi.string().required().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
+   birthday: Joi.string().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
 // eslint-disable-next-line
-   city: Joi.string().required(),
+   city: Joi.string(),
 })
 
 
