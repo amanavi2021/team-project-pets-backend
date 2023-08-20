@@ -10,9 +10,11 @@ upload.single("image"),
 validateBody(schemas.addNoticeSchema),
 ctrl.addNotice);
 
-// router.get('/', authenticate, ctrl.listContacts);
+// ендпоінт для отримання оголошення по Id
+router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
-// router.get('/:contactId', authenticate, isValidId, ctrl.getContactById);
+ 
+// router.get('/', authenticate, ctrl.listContacts);
 
 // router.post('/', authenticate, ctrl.addContact);
 
