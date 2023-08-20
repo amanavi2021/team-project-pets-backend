@@ -15,7 +15,6 @@ const getFavoriteNotices = async (req, res) => {
         return notices.find(notice => notice._id.toString() === id);
     });
     
-
     res.json({
         code: 200,
         status: 'success',

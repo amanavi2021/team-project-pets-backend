@@ -3,6 +3,7 @@ const { handleMongooseError } = require("../helpers");
 const Joi= require("joi");
 
 const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+const cityRegexp =/^[a-zA-Z\u0080-\u024F]+(?:([\\ \\-\\']|(\\.\\ ))[a-zA-Z\u0080-\u024F]+)*$/;
 
 const noticeSchema = new Schema(
   {
@@ -76,17 +77,12 @@ const addNoticeSchema = Joi.object({
   type: Joi.string().min(2).max(16).required(),
   comments: Joi.string().max(120),
   sex: Joi.string().valid("male", "female").required(),
-  location: Joi.string().required(),
-  price: Joi.number().required(),
+  location: Joi.string().pattern(cityRegexp).required(),
+  price: Joi.number().integer().required(),
 });
-
-// const updateFavoriteSchema = Joi.object({
-//     favorite: Joi.boolean().required(),
-// })
 
 const schemas = {
     addNoticeSchema,
-    // updateFavoriteSchema
 }
 
 module.exports = {
