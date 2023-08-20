@@ -7,7 +7,12 @@ const getNoticeById = async (req, res) => {
     if (!result) {
     throw HttpError(404,"Not found");
     }
-    res.json(result);
+    res.status(200).json({
+        code: 200,
+        status: "success",
+        notice:result
+
+    });
 };
 
 module.exports = getNoticeById;
