@@ -10,7 +10,6 @@ const noticeSchema = new Schema(
       type:String,
       enum: ["sell", "lost-found", "in-good-hands"],
       default: "sell",
-      required: [true, "Set category for your pet (sell/lost-found/in-good-hands)"],
     },
     name: {
       type: String,
@@ -36,7 +35,6 @@ const noticeSchema = new Schema(
     comments: {
       type: String,
       maxlength: [120, "Comment can't exceed 120 characters"],
-      required: [true, "Set comment for your pet"],
     },
     sex: {
       type:String,
@@ -73,11 +71,10 @@ noticeSchema.post("save", handleMongooseError);
 const Notice = model("notice", noticeSchema);
 
 const addNoticeSchema = Joi.object({
-  category: Joi.string().valid("sell", "lost-found", "in-good-hands").required(),
   name: Joi.string().min(2).max(16).required(),
   date: Joi.string().pattern(dateRegexp, "DD.MM.YYYY").required(),
   type: Joi.string().min(2).max(16).required(),
-  comments: Joi.string().max(120).required(),
+  comments: Joi.string().max(120),
   sex: Joi.string().valid("male", "female").required(),
   location: Joi.string().required(),
   price: Joi.number().required(),

@@ -1,3 +1,5 @@
+
+// цей файл просто поки для прикладу
 const { Contact } = require("../models/contact");
 const {HttpError, ctrlWrapper} = require("../../helpers");
  const { schemas } = require("../models/contact");

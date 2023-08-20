@@ -4,8 +4,8 @@ const router = express.Router();
 const { isValidId, authenticate, validateBody, upload } = require("../../middlewares");
 const { schemas } = require('../../models/notice');
 
-// ендпоінт для додавання оголошення авторизованим користувачем
-router.post('/', authenticate,
+// ендпоінт для додавання оголошення авторизованим користувачем в обрану категорію
+router.post('/:category', authenticate,
 upload.single("image"),
 validateBody(schemas.addNoticeSchema),
 ctrl.addNotice);

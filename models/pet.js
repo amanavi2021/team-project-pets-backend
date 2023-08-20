@@ -30,7 +30,6 @@ const petSchema = new Schema(
     comments: {
       type: String,
       maxlength: [120, "Comment can't exceed 120 characters"],
-      required: [true, "Set comment for your pet"],
     },
     owner: {
       type: Schema.Types.ObjectId,
@@ -49,7 +48,7 @@ const addPetSchema = Joi.object({
   name: Joi.string().min(2).max(16).required(),
   date: Joi.string().pattern(dateRegexp, "DD.MM.YYYY").required(),
   type: Joi.string().min(2).max(16).required(),
-  comments: Joi.string().max(120).required(),
+  comments: Joi.string().max(120),
 });
 
 const schemas = {
