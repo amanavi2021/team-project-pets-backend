@@ -13,7 +13,11 @@ ctrl.addNotice);
 // ендпоінт для отримання оголошення по Id
 router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
+// eндпоінт для отримання обраних оголошень
+router.get('/favorites', authenticate, ctrl.getFavoriteNotices);
  
+// eндпоінт для додавання і видалення оголошення в обрнані
+router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
 // router.get('/', authenticate, ctrl.listContacts);
 
 // router.post('/', authenticate, ctrl.addContact);
