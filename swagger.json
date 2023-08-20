@@ -24,10 +24,6 @@
     {
       "name": "Notices",
       "description": "Pets notices endpoints"
-    },
-    {
-      "name": "UserPets",
-      "description": "User and own pets information endpoints"
     }
   ],
   "paths": {

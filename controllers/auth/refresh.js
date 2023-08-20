@@ -8,6 +8,8 @@ const { tokens } = require('../../helpers/tokens');
 
 const refresh = async (req, res) => {
     const reqRefToken = req.cookies.refreshToken;
+  
+    
 
     if (!reqRefToken) {
         throw HttpError(401, "Not authorized");
@@ -22,6 +24,8 @@ const refresh = async (req, res) => {
         };
 
         const { token, refreshToken } = await tokens(id);
+
+        await User.findByIdAndUpdate(id, { token: token, refreshToken: refreshToken });
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
