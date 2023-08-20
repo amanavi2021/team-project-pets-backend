@@ -11,6 +11,7 @@ const {
 
 const router = express.Router();
 
+// ендпоінт для додавання улюбленьця авторизованим користувачем
 router.post(
   "/",
   authenticate,

@@ -2,51 +2,98 @@ const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 const Joi= require("joi");
 
-const contactSchema = new Schema({
+const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+
+const noticeSchema = new Schema(
+  {
+    category: {
+      type:String,
+      enum: ["sell", "lost-found", "in-good-hands"],
+      default: "sell",
+      required: [true, "Set category for your pet (sell/lost-found/in-good-hands)"],
+    },
     name: {
-        type: String,
-        required: [true, 'Set name for contact'],
-      },
-      email: {
-        type: String,
-      },
-      phone: {
-        type: String,
-      },
-      favorite: {
-        type: Boolean,
-        default: false,
-      },
-      owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      }
+      type: String,
+      minlength: [2, "Name must be at least 2 characters"],
+      maxlength: [16, "Name can't exceed 16 characters"],
+      required: [true, "Set name for your pet"],
+    },
+    date: {
+      type: String,
+      match: [dateRegexp, "Use date format DD.MM.YYYY"],
+      required: [true, "Set birthday for your pet"],
+    },
+    type: {
+      type: String,
+      minlength: [2, "Type must be at least 2 characters"],
+      maxlength: [16, "Type can't exceed 16 characters"],
+      required: [true, "Set type for your pet"],
+    },
+    imageURL: {
+      type: String,
+      required: true,
+    },
+    comments: {
+      type: String,
+      maxlength: [120, "Comment can't exceed 120 characters"],
+      required: [true, "Set comment for your pet"],
+    },
+    sex: {
+      type:String,
+      enum: ["male", "female"],
+      default: "male",
+      required: [true, "Set sex for your pet (male/female)"],
+    },
+    location: {
+      type: String,
+      required: [true, "Set location for your pet"],
 
-},
-{versionKey:false, timestamps: true});
+    },
+    price: {
+      type: Number, 
+      min: 0,
+      default: 0, 
+         
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
+    userIds: [{
+      type:Schema.Types.ObjectId,
+      ref: "user",
+    }]
+  },
+  { versionKey: false, timestamps: true }
+);
 
-contactSchema.post("save", handleMongooseError);
+noticeSchema.post("save", handleMongooseError);
 
-const Contact = model("contact", contactSchema);
+const Notice = model("notice", noticeSchema);
 
-const addSchema = Joi.object({
-    name: Joi.string().required(),
-    email: Joi.string().email({minDomainSegments:2}).required(),
-    phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
-    favorite: Joi.boolean()
+const addNoticeSchema = Joi.object({
+  category: Joi.string().valid("sell", "lost-found", "in-good-hands").required(),
+  name: Joi.string().min(2).max(16).required(),
+  date: Joi.string().pattern(dateRegexp, "DD.MM.YYYY").required(),
+  type: Joi.string().min(2).max(16).required(),
+  comments: Joi.string().max(120).required(),
+  sex: Joi.string().valid("male", "female").required(),
+  location: Joi.string().required(),
+  price: Joi.number().required(),
 });
 
-const updateFavoriteSchema = Joi.object({
-    favorite: Joi.boolean().required(),
-})
+// const updateFavoriteSchema = Joi.object({
+//     favorite: Joi.boolean().required(),
+// })
 
 const schemas = {
-    addSchema,
-    updateFavoriteSchema
+    addNoticeSchema,
+    // updateFavoriteSchema
 }
 
 module.exports = {
-    Contact,
+    Notice,
     schemas
 }
 

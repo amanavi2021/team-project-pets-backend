@@ -8,7 +8,12 @@ const { _id: owner } = req.user;
  const imageURL = req.file.path;
 
   const result = await Pet.create({ ...req.body, imageURL, owner });
-  res.status(201).json(result);
+  res.status(201).json({
+      code: 201,
+      status: "success",
+      pet: result,
+      }
+    );
 };
 
 const removePet = async (req, res) => {
