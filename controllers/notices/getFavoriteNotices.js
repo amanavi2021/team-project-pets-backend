@@ -3,10 +3,11 @@ const { Notice } = require('../../models/notice');
 
 
 const getFavoriteNotices = async (req, res) => {
+    
     const { _id } = req.user;
    
     const { favorite } = await User.findById(_id);
-
+   
     const favoriteUserData = favorite.map((noticeId) => noticeId.toString());
 
     const notices = await Notice.find({});
@@ -18,10 +19,8 @@ const getFavoriteNotices = async (req, res) => {
     res.json({
         code: 200,
         status: 'success',
-        favorite: favoriteNotices,
+        notices: favoriteNotices,
     });
 };
-
-
 
 module.exports = getFavoriteNotices;

@@ -2,8 +2,8 @@ const addNotice = require("./addNotice");
 const getNoticeById = require("./getNoticeById");
 const getFavoriteNotices = require("./getFavoriteNotices");
 const favoriteNotices = require("./favoriteNotices");
-const getNotices = require("./getNotices");
-const removeNotice = require("./removeNotice");
+const getOwnNotices = require("./getOwnNotices");
+const removeNotice = require("./removeOwnNotice");
 const  { ctrlWrapper } = require("../../helpers");
 
 module.exports = {
@@ -11,6 +11,6 @@ module.exports = {
     getNoticeById: ctrlWrapper(getNoticeById),
     getFavoriteNotices: ctrlWrapper(getFavoriteNotices),
     favoriteNotices: ctrlWrapper(favoriteNotices),
-    getNotices: ctrlWrapper(getNotices),
+    getOwnNotices: ctrlWrapper(getOwnNotices),
     removeNotice: ctrlWrapper(removeNotice),
 }

@@ -62,6 +62,7 @@ const noticeSchema = new Schema(
     userIds: [{
       type:Schema.Types.ObjectId,
       ref: "user",
+      default:[],
     }]
   },
   { versionKey: false, timestamps: true }

@@ -1,9 +1,8 @@
 const { Notice } = require("../../models/notice");
 const {HttpError} = require("../../helpers");
 
-const removeNotice = async (req, res) => { 
+const removeOwnNotice = async (req, res) => { 
     const {noticeId} = req.params;
-    console.log("noticeId", noticeId);
     const result = await Notice.findByIdAndRemove(noticeId);
     if (!result){
       throw HttpError(404, "Not found");
@@ -13,4 +12,4 @@ const removeNotice = async (req, res) => {
     })
 };
 
-module.exports = removeNotice;
+module.exports = removeOwnNotice;

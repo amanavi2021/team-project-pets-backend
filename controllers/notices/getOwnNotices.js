@@ -1,6 +1,6 @@
 const { Notice } = require("../../models/notice");
 
-const getNotices = async (req, res) => {
+const getOwnNotices = async (req, res) => {
     const {_id: owner} = req.user;
     const ownerID = { owner };
     const result = await Notice.find(ownerID, "-createdAt -updatedAt").populate("owner", "name");
@@ -13,4 +13,4 @@ const getNotices = async (req, res) => {
     );    
 };
 
-module.exports = getNotices;
+module.exports = getOwnNotices;

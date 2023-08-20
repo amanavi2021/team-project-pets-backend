@@ -6,7 +6,6 @@ const addNotice = async (req, res) => {
     const imageURL = req.file.path;
     const {category} = req.params;
     const categories = ["sell", "lost-found", "in-good-hands"];
-    console.log(category);
     if (!categories.includes(category)) {
         throw HttpError(404,"Not found");
     }

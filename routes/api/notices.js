@@ -10,18 +10,18 @@ upload.single("image"),
 validateBody(schemas.addNoticeSchema),
 ctrl.addNotice);
 
-// ендпоінт для отримання оголошення по Id
-router.get('/:noticeId', isValidId, ctrl.getNoticeById);
+// ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
+router.get('/own', authenticate, ctrl.getOwnNotices);
 
 // eндпоінт для отримання обраних оголошень
 router.get('/favorites', authenticate, ctrl.getFavoriteNotices);
 
+// ендпоінт для отримання оголошення по Id
+router.get('/:noticeId', ctrl.getNoticeById);
+// router.get('/:noticeId', isValidId, ctrl.getNoticeById);
+
 // eндпоінт для додавання і видалення оголошення в обрнані
 router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
-// router.get('/', authenticate, ctrl.listContacts);
-
-// ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
-router.get('/', authenticate, ctrl.getNotices);
 
 // ендпоінт для видалення оголошення, автором якого є авторизований користувач
 router.delete('/:noticeId', authenticate, isValidId, ctrl.removeNotice);

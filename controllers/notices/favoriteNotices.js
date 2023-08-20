@@ -10,7 +10,7 @@ const favoriteNotices = async (req, res) => {
     const user = await User.findById(_id);
 // is current notice in favorite notices
     const isNotice = user.favorite.find((id) => id.toString() === noticeId);
-
+  
     if (isNotice) { // delete from favorite
         
         user.favorite = user.favorite.filter(notice => notice.toString() !== noticeId);
@@ -18,9 +18,9 @@ const favoriteNotices = async (req, res) => {
         await user.save();
 
         const notice = await Notice.findById(noticeId);
-
+        
         notice.userIds = notice.userIds.find((userId) => userId.toString() !== _id);
-
+        
         await notice.save();
 
     } else {  // add into favorite
@@ -39,6 +39,7 @@ const favoriteNotices = async (req, res) => {
     res.status(200).json({
         code: 200,
         status: 'success',
+        user: user,
     });
 };
 
