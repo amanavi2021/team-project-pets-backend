@@ -40,6 +40,11 @@ const userSchema = new Schema({
     type: String,
     default: '',
   },
+  favorite: {
+      type: [{ type: Schema.Types.ObjectId }],
+      default: [],
+      ref: 'notice',
+    },
 },{versionKey:false, timestamps: true});
 
 userSchema.post("save", handleMongooseError);

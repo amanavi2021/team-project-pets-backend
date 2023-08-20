@@ -234,6 +234,92 @@
           }
         }
       }
+    },
+
+    "api/pets": {
+      "post": {
+        "tags": ["Pets"],
+        "summary": "Add your pet",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+      "requestBody": {
+        "description": "Pet information request body",
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/CreatePetsRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "api/pets/:petId": {
+      "delete": {
+        "tags": ["Pets"],
+        "summary": "Remove your pet",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+        "description": "Remove pet request body",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RemovePetsRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemovePetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Pet with this id not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
 
@@ -661,7 +747,146 @@
                 }
             ]
         }
-      }  
+      },
+      
+      "CreatePetsRequest": {
+        "type": "object",
+        "required": ["name", "date", "type", "image", "comments", "owner"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "date": {
+            "type": "string",
+            "description": "Pet's birthday date DD-MM-YYYY"
+          },
+          "type": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "image": {
+            "type": "file",
+            "description": "Pet's image file"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Comments about pets"
+          }
+        }
+      },
+   
+      "CreatePetsResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "201"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "pet": {
+            "type": "object",
+            "properties": {
+                  "_id": {
+                        "type": "string",
+                        "description": "Pet's id",
+                        "example": "64e0e63c58543456a820bf03"
+                  },
+                 "name": {
+                    "type": "string",
+                    "description": "Pet's name",
+                    "example": "Barsik"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Pet's birthday date",
+                    "example": "DD.MM.YYYY"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Pet's breed",
+                    "example": "British Shorthair"
+                  },
+                  "imageURL": {
+                    "type": "string",
+                    "description": "Pet's image link",
+                    "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+                  },
+                  "comments": {
+                    "type": "string",
+                    "description": "Comments about pets",
+                    "example": "The best cat in the world"
+                  },
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "owner's id",
+                        "example": "64e0e63c58543456a820bf03"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Owner's name",
+                        "example": "Liliia"
+                        }
+                    }
+                  }
+            }
+          }
+        },
+        "example": {
+          "code": "201",
+          "status": "success",
+            "pet": 
+              {
+                "_id": "64e0e63c58543456a820bf03",
+                "name": "Barsik",
+                "date": "01.01.2001",
+                "type": "British Shorthair",
+                "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+                "comments": "The best cat in the world",
+                "owner": {
+                  "_id": "64e0e47b52f97c596bf8fdab",
+                  "name": "Liliia"
+                }
+              }    
+          }
+      },
+
+      "RemovePetsRequest": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "string",
+            "description": "Pet's ID",
+            "example": "64e0e63c58543456a820bf03"
+          }
+        }
+      },
+      "RemovePetsResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      }
     },
 
     "securitySchemes": {
