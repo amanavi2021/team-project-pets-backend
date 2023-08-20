@@ -1,6 +1,6 @@
 const express = require("express");
 
-const ctrl = require("../../controllers/pets");
+const ctrl = require("../../controllers/pets/pets");
 const { schemas } = require("../../models/pet");
 const {
   isValidId,
@@ -20,6 +20,7 @@ router.post(
   ctrl.addPet
 );
 
+// ендпоінт для видалення улюбленьця авторизованим користувачем
 router.delete("/:petId", authenticate, isValidId, ctrl.removePet);
 
 // router.patch(
