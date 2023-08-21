@@ -80,7 +80,11 @@ const addNoticeSchema = Joi.object({
   comments: Joi.string().max(120),
   sex: Joi.string().valid("male", "female").required(),
   location: Joi.string().pattern(cityRegexp).required(),
-  price: Joi.number().integer().required(),
+  price: Joi.number().integer().when("category", {
+    is: "sell",
+    then: Joi.number().integer().required().min(1),
+    otherwise: Joi.number().integer().default(0),
+  }),
 });
 
 const schemas = {
