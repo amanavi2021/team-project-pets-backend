@@ -107,7 +107,7 @@
       }
     },
 
-     "api/users/logout": {
+    "api/users/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -130,7 +130,7 @@
       }
     },
 
-     "api/users/update": {
+    "api/users/update": {
       "patch": {
         "tags": ["Auth"],
         "summary": "User update",
@@ -140,7 +140,7 @@
           "description": "Updates object",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateRequest"
               }
@@ -174,7 +174,7 @@
       }
     },
 
-     "api/users/refresh": {
+    "api/users/refresh": {
       "get": {
         "tags": ["Auth"],
         "summary": "Token refresh",
@@ -203,7 +203,7 @@
       }
     },
 
-     "api/users/current": {
+    "api/users/current": {
       "get": {
         "tags": ["Auth"],
         "summary": "Information about user and his pets",
@@ -316,6 +316,200 @@
           },
           "404": {
             "description": "Pet with this id not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "api/notices/own": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get own pets",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+      "requestBody": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOwnPetsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "api/notices/favorites": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get favotite notices",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+      "requestBody": {
+        "description": "Get favorite notices request body",
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/GetFavoriteNoticesRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFavoriteNoticesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "api/notices/:noticeId": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notice by Id",
+        "parameters": [],
+        "security": [],
+      "requestBody": {
+        "description": "Get notice request body",
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/GetNoticeRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNoticeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      },
+
+      "patch": {
+        "tags": ["Notices"],
+        "summary": "Add notice into favorites / delete notice from favorites",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+      "requestBody": {
+        "description": "Add/delete favorite notice request body",
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/AddDeleteFavoriteNoticeRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddDeleteFavoriteNoticeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      },
+
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete own notice",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+      "requestBody": {
+        "description": "Delete own notice request body",
+        "content": {
+          "multipart/form-data": {
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOwnNoticeRequest"
+            }
+          }
+        }
+      },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOwnNoticeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
             "content": {}
           }
         }
@@ -530,8 +724,8 @@
           },
           "avatarURL": {
             "type": "string",
-            "description": "User's avatar link",
-            "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+            "description": "User's avatar",
+            "format": "binary"
           }
         }
       },
@@ -597,7 +791,7 @@
         }
       },
 
-       "RefreshResponse": {
+      "RefreshResponse": {
         "type": "object",
         "properties": {
           "code": {
@@ -618,9 +812,9 @@
           "status": "success",
           "token": "ytJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPK7jk8"
         }
-       },
+      },
 
-       "CurrentResponse": {
+      "CurrentResponse": {
         "type": "object",
         "properties": {
           "code": {
@@ -775,7 +969,7 @@
           }
         }
       },
-   
+
       "CreatePetsResponse": {
         "type": "object",
         "properties": {
@@ -868,6 +1062,151 @@
         }
       },
       "RemovePetsResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      },
+
+      "GetOwnPetsResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      },
+
+      "GetFavoriteNoticesRequest": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "string",
+            "description": "Pet's ID",
+            "example": "64e0e63c58543456a820bf03"
+          }
+        }
+      },
+      "GetFavoriteNoticesResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      },
+
+      "GetNoticeRequest": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "string",
+            "description": "Pet's ID",
+            "example": "64e0e63c58543456a820bf03"
+          }
+        }
+      },
+      "GetNoticeResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      },
+
+      "AddDeleteFavoriteNoticeRequest": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "string",
+            "description": "Pet's ID",
+            "example": "64e0e63c58543456a820bf03"
+          }
+        }
+      },
+      "AddDeleteFavoriteResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "petId": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
+           }
+          },
+        "example": {
+          "message": "Delete success"
+        }
+      },
+      
+      "DeleteOwnNoticeRequest": {
+        "type": "object",
+        "properties": {
+          "petId": {
+            "type": "string",
+            "description": "Pet's ID",
+            "example": "64e0e63c58543456a820bf03"
+          }
+        }
+      },
+      "DeleteOwnNoticeResponse": {
         "type": "object",
         "properties": {
           "code": {
