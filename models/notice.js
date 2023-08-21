@@ -73,6 +73,7 @@ noticeSchema.post("save", handleMongooseError);
 const Notice = model("notice", noticeSchema);
 
 const addNoticeSchema = Joi.object({
+  category: Joi.string().valid("sell", "lost-found", "in-good-hands").required(),
   name: Joi.string().min(2).max(16).required(),
   date: Joi.string().pattern(dateRegexp, "DD.MM.YYYY").required(),
   type: Joi.string().min(2).max(16).required(),
