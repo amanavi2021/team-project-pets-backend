@@ -1,31 +1,42 @@
-const express = require('express');
+const express = require("express");
 const ctrl = require("../../controllers/notices");
 const router = express.Router();
-const { isValidId, authenticate, validateBody, upload } = require("../../middlewares");
-const { schemas } = require('../../models/notice');
+const {
+  isValidId,
+  authenticate,
+  validateBody,
+  upload,
+} = require("../../middlewares");
+const { schemas } = require("../../models/notice");
 
 // ендпоінт для додавання оголошення авторизованим користувачем в
-router.post('/:category', authenticate,
-upload.single("image"),
-validateBody(schemas.addNoticeSchema),
-ctrl.addNotice);
+router.post(
+  "/:category",
+  authenticate,
+  upload.single("image"),
+  validateBody(schemas.addNoticeSchema),
+  ctrl.addNotice
+);
 
 // ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
-router.get('/own', authenticate, ctrl.getOwnNotices);
+router.get("/own", authenticate, ctrl.getOwnNotices);
 
 // eндпоінт для отримання обраних оголошень
-router.get('/favorites', authenticate, ctrl.getFavoriteNotices);
+router.get("/favorites", authenticate, ctrl.getFavoriteNotices);
 
 // ендпоінт для отримання оголошення по Id
-router.get('/:noticeId', ctrl.getNoticeById);
+router.get("/:noticeId", ctrl.getNoticeById);
 // router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
 // eндпоінт для додавання і видалення оголошення в обрнані
-router.patch('/:noticeId', authenticate, ctrl.favoriteNotices);
+router.patch("/:noticeId", authenticate, ctrl.favoriteNotices);
 // router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
 
 // ендпоінт для видалення оголошення, автором якого є авторизований користувач
-router.delete('/:noticeId', authenticate, isValidId, ctrl.removeNotice);
+router.delete("/:noticeId", authenticate, isValidId, ctrl.removeNotice);
+
+// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
+// та searchQuery - дані з інпуту пошук по "name"
+router.get("/", ctrl.searchNotices);
 
 module.exports = router;
-
