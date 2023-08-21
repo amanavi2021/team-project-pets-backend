@@ -12,7 +12,7 @@ const { schemas } = require("../../models/notice");
 
 // ендпоінт для додавання оголошення авторизованим користувачем в
 router.post(
-  "/:category",
+  "/",
   authenticate,
   upload.single("image"),
   validateBody(schemas.addNoticeSchema),
