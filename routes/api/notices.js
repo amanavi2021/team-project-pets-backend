@@ -11,13 +11,7 @@ const {
 const { schemas } = require("../../models/notice");
 
 // ендпоінт для додавання оголошення авторизованим користувачем в
-router.post(
-  "/",
-  authenticate,
-  upload.single("image"),
-  validateBody(schemas.addNoticeSchema),
-  ctrl.addNotice
-);
+router.post("/", authenticate, upload.single("image"), validateBody(schemas.addNoticeSchema), ctrl.addNotice);
 
 // ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
 // та searchQuery - дані з інпуту пошук по "name"
