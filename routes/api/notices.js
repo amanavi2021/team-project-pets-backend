@@ -21,11 +21,11 @@ router.get('/:noticeId', ctrl.getNoticeById);
 // router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
 // eндпоінт для додавання і видалення оголошення в обрнані
-router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
+router.patch('/:noticeId', authenticate, ctrl.favoriteNotices);
+// router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
 
 // ендпоінт для видалення оголошення, автором якого є авторизований користувач
 router.delete('/:noticeId', authenticate, isValidId, ctrl.removeNotice);
-
 
 module.exports = router;
 
