@@ -10,7 +10,7 @@ const {
 } = require("../../middlewares");
 const { schemas } = require("../../models/notice");
 
-// ендпоінт для додавання оголошення авторизованим користувачем в
+// ендпоінт для додавання оголошення авторизованим користувачем
 router.post(
   "/",
   authenticate,
