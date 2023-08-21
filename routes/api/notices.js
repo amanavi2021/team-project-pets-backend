@@ -6,6 +6,7 @@ const {
   authenticate,
   validateBody,
   upload,
+  isValidCategory,
 } = require("../../middlewares");
 const { schemas } = require("../../models/notice");
 
@@ -17,6 +18,10 @@ router.post(
   validateBody(schemas.addNoticeSchema),
   ctrl.addNotice
 );
+
+// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
+// та searchQuery - дані з інпуту пошук по "name"
+router.get("/:category", isValidCategory, ctrl.searchNotices);
 
 // ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
 router.get("/own", authenticate, ctrl.getOwnNotices);
@@ -34,9 +39,5 @@ router.patch("/:noticeId", authenticate, ctrl.favoriteNotices);
 
 // ендпоінт для видалення оголошення, автором якого є авторизований користувач
 router.delete("/:noticeId", authenticate, isValidId, ctrl.removeNotice);
-
-// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
-// та searchQuery - дані з інпуту пошук по "name"
-router.get("/", ctrl.searchNotices);
 
 module.exports = router;
