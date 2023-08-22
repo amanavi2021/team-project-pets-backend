@@ -17,11 +17,4 @@ router.post("/", authenticate, upload.single("image"), validateBody(schemas.addP
 // ендпоінт для видалення улюбленьця авторизованим користувачем
 router.delete("/:petId", authenticate, isValidId, ctrl.removePet);
 
-// router.patch(
-//   "/avatars",
-//   authenticate,
-//   upload.single("avatar"),
-//   ctrl.updatePetAvatar
-// );
-
 module.exports = router;

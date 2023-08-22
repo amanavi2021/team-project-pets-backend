@@ -11,7 +11,10 @@
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json", "multipart/form-data"],
-  "servers": [{ "url": "http://localhost:3000" }, {"url": "https://team-project-pets-backend.onrender.com"}],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://team-project-pets-backend.onrender.com" }
+  ],
   "tags": [
     {
       "name": "Auth",
@@ -242,16 +245,16 @@
         "summary": "Add your pet",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-      "requestBody": {
-        "description": "Pet information request body",
-        "content": {
-          "multipart/form-data": {
-            "schema": {
-              "$ref": "#/components/schemas/CreatePetsRequest"
+        "requestBody": {
+          "description": "Pet information request body",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePetsRequest"
+              }
             }
           }
-        }
-      },
+        },
         "responses": {
           "201": {
             "description": "Success",
@@ -359,65 +362,54 @@
             "content": {}
           }
         }
-      }
-    },
-
-    "api/notices/:category": {
+      },
       "get": {
         "tags": ["Notices"],
-        "summary": "Search notice by category and query",
+        "summary": "Get list of the pets sorted by category",
         "parameters": [
           {
-          "in": "path",
-          "name": "category",
-          "schema": {
-            "type": "string",
-            "example": "sell"
-          },
-          "required": true,
-          "description": "[lost-found, sell, for-free]"
-          },
-          {
-          "in": "query",
-          "name": "page",
-          "schema": {
-            "tyoe": "integer"
-          },
-          "description": "page number"
+            "name": "category",
+            "in": "query params",
+            "schema": {
+              "type": "string",
+              "enum": ["sell", "lost-found", "in-good-hands"],
+              "default": "sell"
+            },
+            "description": "Category of the pets"
           },
           {
-          "in": "query",
-          "name": "limit",
-          "schema": {
-            "tyoe": "integer"
-          },
-          "description": "number per page"
+            "name": "page",
+            "in": "query params",
+            "schema": {
+              "type": "string",
+              "default": 1
+            },
+            "description": "Page number for pagination"
           },
           {
-          "in": "query",
-          "name": "searchQuery",
-          "schema": {
-            "tyoe": "string"
+            "name": "limit",
+            "in": "query params",
+            "schema": {
+              "type": "string",
+              "default": 20
+            },
+            "description": "Number of items per page"
           },
-          "description": "search query"
+          {
+            "name": "searchQuery",
+            "in": "query params",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for filtering by name"
           }
         ],
-        "security": [],
-      "requestBody": [],
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SearchResponse"
-                }
-              }
-            }
+            "description": "Success. Filtered array of notices"
           },
-          "400": {
-            "description": "Category is not valid",
-            "content": {}
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -429,7 +421,7 @@
         "summary": "Get own pets",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-      "requestBody": [],
+        "requestBody": [],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -580,7 +572,6 @@
   },
 
 
-
   "components": {
     "schemas": {
       "RegistrationRequest": {
@@ -622,52 +613,51 @@
           "user": {
             "type": "object",
             "properties": {
-                    "email": {
-                        "type": "string",
-                        "description": "User's email",
-                        "format": "email"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "User's name",
-                        "example": "Liliia"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "User's contact phone number",
-                        "example": "+380661234567"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "User's city",
-                        "example": "Kyiv"
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birsthday date",
-                        "example": "01-01-2001"
-                    },
-                    "avatarUrl": {
-                        "type": "string",
-                        "description": "User's avatar",
-                        "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-                    }
-                }
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Liliia"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's contact phone number",
+                "example": "+380661234567"
+              },
+              "city": {
+                "type": "string",
+                "description": "User's city",
+                "example": "Kyiv"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's birsthday date",
+                "example": "01-01-2001"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              }
+            }
           }
         },
         "example": {
           "code": "201",
           "status": "success",
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2",
-          "user":
-            { 
-                "email": "liliia@gmail.com", 
-                "name": "Liliia",
-                "phone": "+380661234567",
-                "city": "Kyiv",
-                "birthday": "01-01-2001",
-                "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-            }
+          "user": {
+            "email": "liliia@gmail.com",
+            "name": "Liliia",
+            "phone": "+380661234567",
+            "city": "Kyiv",
+            "birthday": "01-01-2001",
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+          }
         }
       },
 
@@ -698,59 +688,58 @@
             "type": "string",
             "example": "success"
           },
-           "token": {
+          "token": {
             "type": "string",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2"
           },
           "user": {
             "type": "object",
             "properties": {
-                    "email": {
-                        "type": "string",
-                        "description": "User's email",
-                        "format": "email"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "User's name",
-                        "example": "Liliia"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "User's contact phone number",
-                        "example": "+380661234567"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "User's city",
-                        "example": "Kyiv"
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birsthday date",
-                        "example": "01-01-2001"
-                    },
-                    "avatarUrl": {
-                        "type": "string",
-                        "description": "User's avatar",
-                        "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-                    }
-                }
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Liliia"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's contact phone number",
+                "example": "+380661234567"
+              },
+              "city": {
+                "type": "string",
+                "description": "User's city",
+                "example": "Kyiv"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's birsthday date",
+                "example": "01-01-2001"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              }
+            }
           }
         },
         "example": {
           "code": "200",
           "status": "success",
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2",
-          "user":
-            { 
-                "email": "liliia@gmail.com", 
-                "name": "Liliia",
-                "phone": "+380661234567",
-                "city": "Kyiv",
-                "birthday": "01-01-2001",
-                "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-            }
+          "user": {
+            "email": "liliia@gmail.com",
+            "name": "Liliia",
+            "phone": "+380661234567",
+            "city": "Kyiv",
+            "birthday": "01-01-2001",
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+          }
         }
       },
 
@@ -804,51 +793,50 @@
           "user": {
             "type": "object",
             "properties": {
-                 "name": {
-                        "type": "string",
-                        "description": "User's name",
-                        "example": "Liliia"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "User's email",
-                        "format": "email"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "User's contact phone number",
-                        "example": "+380661234567"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "User's city",
-                        "example": "Lutsk"
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birsthday date",
-                        "example": "02-02-2002"
-                    },
-                    "avatarUrl": {
-                        "type": "string",
-                        "description": "User's avatar",
-                        "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-                    }
-                }
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Liliia"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's contact phone number",
+                "example": "+380661234567"
+              },
+              "city": {
+                "type": "string",
+                "description": "User's city",
+                "example": "Lutsk"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's birsthday date",
+                "example": "02-02-2002"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              }
+            }
           }
         },
         "example": {
           "code": "200",
           "status": "success",
-           "user":
-            { 
-                "name": "Liliia",    
-                "email": "liliia@gmail.com", 
-                "phone": "+380661234567",
-                "city": "Lutsk",
-                "birthday": "02-02-2002",
-                "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-            }
+          "user": {
+            "name": "Liliia",
+            "email": "liliia@gmail.com",
+            "phone": "+380661234567",
+            "city": "Lutsk",
+            "birthday": "02-02-2002",
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+          }
         }
       },
 
@@ -866,8 +854,8 @@
           "token": {
             "type": "string",
             "example": "ytJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPK7jk8"
-           }
-          },
+          }
+        },
         "example": {
           "code": "200",
           "status": "success",
@@ -889,121 +877,120 @@
           "user": {
             "type": "object",
             "properties": {
-                 "name": {
-                        "type": "string",
-                        "description": "User's name",
-                        "example": "Liliia"
-                    },
-                    "email": {
-                        "type": "string",
-                        "description": "User's email",
-                        "format": "email"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "description": "User's contact phone number",
-                        "example": "+380661234567"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "User's city",
-                        "example": "Lutsk"
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birsthday date",
-                        "example": "02-02-2002"
-                    },
-                    "avatarUrl": {
-                        "type": "string",
-                        "description": "User's avatar",
-                        "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-                    }
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Liliia"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's contact phone number",
+                "example": "+380661234567"
+              },
+              "city": {
+                "type": "string",
+                "description": "User's city",
+                "example": "Lutsk"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's birsthday date",
+                "example": "02-02-2002"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "User's avatar",
+                "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              }
             }
           },
           "pets": {
             "type": "array",
             "items": {
-                "type": "objects",
-                "properties": {
+              "type": "objects",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "pet's id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "pet's name",
+                  "example": "Marsik"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "pet's birthday date",
+                  "example": "01-01-2001"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "pet's type",
+                  "example": "cat"
+                },
+                "imageURL": {
+                  "type": "string",
+                  "description": "pet's avatar link",
+                  "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "comments about pets",
+                  "example": "the best cat in the world"
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
                     "_id": {
-                        "type": "string",
-                        "description": "pet's id",
-                        "example": "64e0e63c58543456a820bf03"
+                      "type": "string",
+                      "description": "owner's id",
+                      "example": "64e0e63c58543456a820bf03"
                     },
                     "name": {
-                        "type": "string",
-                        "description": "pet's name",
-                        "example": "Marsik"
-                    },
-                    "date": {
-                        "type": "string",
-                        "description": "pet's birthday date",
-                        "example": "01-01-2001"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "pet's type",
-                        "example": "cat"
-                    },
-                    "imageURL": {
-                        "type": "string",
-                        "description": "pet's avatar link",
-                        "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
-                    },
-                     "comments": {
-                        "type": "string",
-                        "description": "comments about pets",
-                        "example": "the best cat in the world"
-                    },
-                     "owner": {
-                        "type": "object",
-                        "properties": {
-                            "_id": {
-                                "type": "string",
-                                "description": "owner's id",
-                                "example": "64e0e63c58543456a820bf03"
-                            },
-                            "name": {
-                                "type": "string",
-                                "description": "Owner's name",
-                                "example": "Liliia"
-                            }
-                        }
+                      "type": "string",
+                      "description": "Owner's name",
+                      "example": "Liliia"
                     }
+                  }
                 }
+              }
             }
           }
         },
         "example": {
           "code": "200",
           "status": "success",
-           "user":
-            { 
-                "name": "Liliia",    
-                "email": "liliia@gmail.com", 
-                "phone": "+380661234567",
-                "city": "Lutsk",
-                "birthday": "02-02-2002",
-                "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
-            },
-            "pets": [
-                {
-                    "_id": "64e0e63c58543456a820bf03",
-                    "name": "Marsik",
-                    "date": "01-01-2001",
-                    "type": "cat",
-                    "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
-                    "comments": "the best cat in the world",
-                    "owner": {
-                        "_id": "64e0e47b52f97c596bf8fdab",
-                        "name": "Liliia"
-                    }
-                }
-            ]
+          "user": {
+            "name": "Liliia",
+            "email": "liliia@gmail.com",
+            "phone": "+380661234567",
+            "city": "Lutsk",
+            "birthday": "02-02-2002",
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+          },
+          "pets": [
+            {
+              "_id": "64e0e63c58543456a820bf03",
+              "name": "Marsik",
+              "date": "01-01-2001",
+              "type": "cat",
+              "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+              "comments": "the best cat in the world",
+              "owner": {
+                "_id": "64e0e47b52f97c596bf8fdab",
+                "name": "Liliia"
+              }
+            }
+          ]
         }
       },
-      
+
       "CreatePetsRequest": {
         "type": "object",
         "required": ["name", "date", "type", "image", "comments"],
@@ -1046,71 +1033,70 @@
           "pet": {
             "type": "object",
             "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Pet's id",
+                "example": "64e0e63c58543456a820bf03"
+              },
+              "name": {
+                "type": "string",
+                "description": "Pet's name",
+                "example": "Barsik"
+              },
+              "date": {
+                "type": "string",
+                "description": "Pet's birthday date",
+                "example": "DD.MM.YYYY"
+              },
+              "type": {
+                "type": "string",
+                "description": "Pet's breed",
+                "example": "British Shorthair"
+              },
+              "imageURL": {
+                "type": "string",
+                "description": "Pet's image link",
+                "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+              },
+              "comments": {
+                "type": "string",
+                "description": "Comments about pets",
+                "example": "The best cat in the world"
+              },
+              "owner": {
+                "type": "object",
+                "properties": {
                   "_id": {
-                        "type": "string",
-                        "description": "Pet's id",
-                        "example": "64e0e63c58543456a820bf03"
-                  },
-                 "name": {
                     "type": "string",
-                    "description": "Pet's name",
-                    "example": "Barsik"
+                    "description": "owner's id",
+                    "example": "64e0e63c58543456a820bf03"
                   },
-                  "date": {
+                  "name": {
                     "type": "string",
-                    "description": "Pet's birthday date",
-                    "example": "DD.MM.YYYY"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "Pet's breed",
-                    "example": "British Shorthair"
-                  },
-                  "imageURL": {
-                    "type": "string",
-                    "description": "Pet's image link",
-                    "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
-                  },
-                  "comments": {
-                    "type": "string",
-                    "description": "Comments about pets",
-                    "example": "The best cat in the world"
-                  },
-                  "owner": {
-                    "type": "object",
-                    "properties": {
-                      "_id": {
-                        "type": "string",
-                        "description": "owner's id",
-                        "example": "64e0e63c58543456a820bf03"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "Owner's name",
-                        "example": "Liliia"
-                        }
-                    }
+                    "description": "Owner's name",
+                    "example": "Liliia"
                   }
+                }
+              }
             }
           }
         },
         "example": {
           "code": "201",
           "status": "success",
-            "pet": 
-              {
-                "_id": "64e0e63c58543456a820bf03",
-                "name": "Barsik",
-                "date": "01.01.2001",
-                "type": "British Shorthair",
-                "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
-                "comments": "The best cat in the world",
-                "owner": {
-                  "_id": "64e0e47b52f97c596bf8fdab",
-                  "name": "Liliia"
-                }
-              }    
+          "pet": {
+            "_id": "64e0e63c58543456a820bf03",
+            "name": "Barsik",
+            "date": "01.01.2001",
+            "type": "British Shorthair",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+            "comments": "The best cat in the world",
+            "owner": {
+              "_id": "64e0e47b52f97c596bf8fdab",
+              "name": "Liliia"
+            }
           }
+        }
       },
 
       "RemovePetsResponse": {
@@ -1127,7 +1113,7 @@
           "petId": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
+          }
           },
         "example": {
           "message": "Delete success"
@@ -1158,7 +1144,7 @@
           "petId": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
+          }
           },
         "example": {
           "message": "Delete success"
@@ -1179,8 +1165,8 @@
           "petId": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
-          },
+          }
+        },
         "example": {
           "message": "Delete success"
         }
@@ -1200,8 +1186,8 @@
           "petId": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
-          },
+          }
+        },
         "example": {
           "message": "Delete success"
         }
@@ -1221,8 +1207,8 @@
           "petId": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
-          },
+          }
+        },
         "example": {
           "message": "Delete success"
         }
@@ -1242,8 +1228,8 @@
           "notice": {
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
-           }
-          },
+          }
+        },
         "example": {
           "message": "Delete success"
         }
@@ -1265,7 +1251,7 @@
           "message": "Successfull operation"
         }
       },
-      
+
       "DeleteOwnNoticeResponse": {
         "type": "object",
         "properties": {

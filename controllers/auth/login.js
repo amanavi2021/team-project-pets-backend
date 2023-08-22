@@ -41,5 +41,4 @@ if (!passwordCompare) {
     });
 };
 
-
 module.exports = login;

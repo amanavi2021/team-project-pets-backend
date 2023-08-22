@@ -6,16 +6,16 @@ const {
   authenticate,
   validateBody,
   upload,
-  isValidCategory,
 } = require("../../middlewares");
 const { schemas } = require("../../models/notice");
+
 
 // ендпоінт для додавання оголошення авторизованим користувачем в
 router.post("/", authenticate, upload.single("image"), validateBody(schemas.addNoticeSchema), ctrl.addNotice);
 
 // ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
-// та searchQuery - дані з інпуту пошук по "name"
-router.get("/:category", isValidCategory, ctrl.searchNotices);
+// та searchQuery - дані з інпуту пошук по "name" + пагінація
+router.get("/", ctrl.searchNotices);
 
 // ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
 router.get("/own", authenticate, ctrl.getOwnNotices);
