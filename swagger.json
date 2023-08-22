@@ -969,6 +969,14 @@
                 "type": "string",
                 "description": "User's avatar",
                 "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              },
+               "favorite": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Id of favorite notice",
+                  "example": "fcghjnjk6757889hvgfc"
+                }
               }
             }
           },
@@ -1035,7 +1043,8 @@
             "phone": "+380661234567",
             "city": "Lutsk",
             "birthday": "02-02-2002",
-            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b",
+            "favorite": "[gvfdbfgbgfbnfg3434543df, fdfdbfgbgfbnfg3434543df]"
           },
           "pets": [
             {

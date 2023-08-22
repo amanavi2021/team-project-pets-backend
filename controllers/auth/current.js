@@ -2,7 +2,7 @@
 const { Pet } = require("../../models/pet");
 
 const current = async (req, res) => {
-    const { email, name, phone, city, birthday, avatarURL } = req.user;
+    const { email, name, phone, city, birthday, avatarURL, favorite } = req.user;
     const { _id: owner } = req.user;
   
     const ownerID = { owner };
@@ -21,7 +21,8 @@ const current = async (req, res) => {
         phone,
         city,
         birthday,
-        avatarURL
+        avatarURL,
+        favorite
       },
       pets: [...result],  
       
