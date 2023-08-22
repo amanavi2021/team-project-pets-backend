@@ -27,6 +27,14 @@
     {
       "name": "Notices",
       "description": "Pets notices endpoints"
+    },
+    {
+      "name": "News",
+      "description": "News endpoints"
+    },
+     {
+      "name": "Services",
+      "description": "Services endpoints"
     }
   ],
   "paths": {
@@ -564,6 +572,61 @@
           },
           "404": {
             "description": "Not found",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/api/news/": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news",
+        "parameters":  [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": 20
+            },
+            "description": "Number of items per page"
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success. Array of news"
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+
+
+    "/api/services/": {
+      "get": {
+        "tags": ["Services"],
+        "summary": "Get services",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success. Array of services"
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
             "content": {}
           }
         }
@@ -1125,7 +1188,7 @@
         "properties": {
           "category": {
             "type": "string",
-            "description": "notice category [sell- lost-found - in-good-hands]"
+            "description": "notice category [sell lost-found in-good-hands]"
           },
           "name": {
             "type": "string",
@@ -1133,7 +1196,7 @@
           },
           "sex": {
             "type": "string",
-            "description": "pet's sex",
+            "description": "[male female]",
             "example": "male"
           },
           "type": {
