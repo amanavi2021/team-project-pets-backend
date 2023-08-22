@@ -428,7 +428,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateOwnPetsResponse"
+                  "$ref": "#/components/schemas/GetOwnNoticeResponse"
                 }
               }
             }
@@ -1046,7 +1046,7 @@
               "date": {
                 "type": "string",
                 "description": "Pet's birthday date",
-                "example": "DD.MM.YYYY"
+                "example": "DD-MM-YYYY"
               },
               "type": {
                 "type": "string",
@@ -1121,12 +1121,48 @@
       },
 
       "AddNoticeRequest": {
-        "type": "object",
+          "type": "object",
+        "required": ["name", "sex", "date", "type", "image", "comments", "category", "location"],
         "properties": {
-          "petId": {
+          "category": {
             "type": "string",
-            "description": "Pet's ID",
-            "example": "64e0e63c58543456a820bf03"
+            "description": "notice category [sell- lost-found - in-good-hands]"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name"
+          },
+          "sex": {
+            "type": "string",
+            "description": "pet's sex",
+            "example": "male"
+          },
+          "type": {
+            "type": "string",
+            "description": "Pet's breed"
+          },
+          "comments": {
+            "type": "string",
+            "description": "Comments about pets"
+          },
+          "location": {
+            "type": "string",
+            "description": "pet's location",
+            "example": "Kyiv"
+          },
+          "price": {
+            "type": "integer",
+            "description": "pet's selling price",
+            "example": "500"
+          },
+          "image": {
+            "type": "string",
+            "description": "Pet's avatar",
+            "format": "binary"
+          },
+          "date": {
+            "type": "string",
+            "description": "Pet's birthday date DD-MM-YYYY"
           }
         }
       },
@@ -1135,19 +1171,110 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": "201"
           },
           "status": {
             "type": "string",
             "example": "success"
           },
-          "petId": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
+          "notice": {
+            "type": "object",
+            "properties":{
+              "category": {
+                "type": "string",
+                "description": "notice category",
+                "example": "sell"
+              },
+              "name": {
+                "type": "string",
+                "description": "pet's name",
+                "example": "Marsik"
+              },
+              "date": {
+                "type": "string",
+                "description": "date of pet birth",
+                "example": "01-01-2001"
+              },
+              "type": {
+                "type": "string",
+                "description": "type of pet",
+                "example": "cat"
+              },
+              "imageURL": {
+                "type": "string",
+                "description": "pet avatar link",
+                "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg"
+              },
+              "comments": {
+                "type": "string",
+                "description": "additional information about pet",
+                "example": "the best cat in the world"
+              },
+              "sex": {
+                "type": "string",
+                "description": "pet sex",
+                "example": "male"
+              },
+              "location": {
+                "type": "string",
+                "description": "pet location",
+                "example": "Kyiv"
+              },
+              "price": {
+                "type": "integer",
+                "description": "pet selling price",
+                "example": "400"
+              },
+              "owner": {
+                "type": "string",
+                "description": "owner's id",
+                "example": "64e0e47b52f97c596bf8fdab"
+              },
+              "usersId": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "id of user whose has this notice in favorites",
+                  "example": "64e0e63c58543456a820bf03"
+                }
+              },
+              "_id":{
+                "type": "string",
+                "description": "noptice id",
+                "example": "64e485a3b58ba71467f879ea"
+              },
+              "createAt": {
+                "type": "string",
+                "description": "date of notice creation",
+                "example": "2023-08-20T05:45:47.363Z"
+              },
+              "updateAt": {
+                "type": "string",
+                "description": "date of notice update",
+                "example": "2023-08-20T06:45:40.393Z"
+              }
+            }
           }
-          },
+        },
         "example": {
-          "message": "Delete success"
+          "code": "201",
+          "status": "success",
+          "notice": {
+            "category": "sell",
+            "name": "Marsik",
+            "date": "01-01-2001",
+            "type": "cat",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg",
+            "comments": "the best cat in the world",
+            "sex": "male",
+            "location": "Kyiv",
+            "price": 400,
+            "owner": "64e0e47b52f97c596bf8fdab",
+            "userIds": ["64e0e63c58543456a820bf03"],
+            "_id": "64e1a88b3cab012b6eb44483",
+            "createdAt": "2023-08-20T05:45:47.363Z",
+            "updatedAt": "2023-08-20T05:45:47.363Z"
+          }
         }
       },
 
@@ -1172,7 +1299,7 @@
         }
       },
 
-      "GetOwnPetsResponse": {
+      "GetOwnNoticeResponse": {
         "type": "object",
         "properties": {
           "code": {
@@ -1183,13 +1310,108 @@
             "type": "string",
             "example": "success"
           },
-          "petId": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
+          "notices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Notice's id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "notece's category",
+                  "example": "sell"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Pet's name",
+                  "example": "Barsik"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Pet's birthday date",
+                  "example": "DD-MM-YYYY"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Pet's breed",
+                  "example": "British Shorthair"
+                },
+                "imageURL": {
+                  "type": "string",
+                  "description": "Pet's image link",
+                  "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "Comments about pets",
+                  "example": "The best cat in the world"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "pet's sex",
+                  "example": "male"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "pet's location",
+                  "example": "Kyiv"
+                },
+                "price": {
+                  "type": "integer",
+                  "description": "pet's selling price",
+                  "example": "500"
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "description": "owner's id",
+                      "example": "64e0e63c58543456a820bf03"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Owner's name",
+                      "example": "Liliia"
+                    }
+                  }
+                },
+                "usersIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "id of user whose has this notice in favorites",
+                    "example": "dfdgvdfbg3434hjjhk5"
+                  }
+                }
+            }
           }
+            }
         },
         "example": {
-          "message": "Delete success"
+          "code": "200",
+          "status": "success",
+          "notices": [{
+            "_id": "64e0e63c58543456a820bf03",
+            "category": "sell",
+            "name": "Barsik",
+            "date": "01-01-2001",
+            "type": "British Shorthair",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+            "comments": "The best cat in the world",
+            "sex": "male",
+            "location": "Kyiv",
+            "price": 500,
+            "owner": {
+              "_id": "64e0e47b52f97c596bf8fdab",
+              "name": "Liliia"
+            },
+            "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
+          }]
         }
       },
 
@@ -1204,13 +1426,107 @@
             "type": "string",
             "example": "success"
           },
-          "petId": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
+          "notices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Notice's id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "notece's category",
+                  "example": "sell"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Pet's name",
+                  "example": "Barsik"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Pet's birthday date",
+                  "example": "DD-MM-YYYY"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Pet's breed",
+                  "example": "British Shorthair"
+                },
+                "imageURL": {
+                  "type": "string",
+                  "description": "Pet's image link",
+                  "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "Comments about pets",
+                  "example": "The best cat in the world"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "pet's sex",
+                  "example": "male"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "pet's location",
+                  "example": "Kyiv"
+                },
+                "price": {
+                  "type": "integer",
+                  "description": "pet's selling price",
+                  "example": "500"
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "owner's id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "usersIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "id of user whose has this notice in favorites",
+                    "example": "dfdgvdfbg3434hjjhk5"
+                  }
+                },
+                "createdAt": {
+                  "type": "string",
+                  "description": "date of notice creation",
+                  "example": "2023-08-20T05:39:29.020Z"
+                },
+                "updateAt": {
+                  "type": "string",
+                  "description": "date of notice update",
+                  "example": "2023-08-20T05:39:29.020Z"
+                }
+              }
+            }
           }
         },
         "example": {
-          "message": "Delete success"
+          "code": "200",
+          "status": "success",
+          "notices": [{
+            "_id": "64e0e63c58543456a820bf03",
+            "category": "sell",
+            "name": "Barsik",
+            "date": "01-01-2001",
+            "type": "British Shorthair",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+            "comments": "The best cat in the world",
+            "sex": "male",
+            "location": "Kyiv",
+            "price": 500,
+            "owner":  "64e0e47b52f97c596bf8fdab",
+            "usersIds": ["dfdvfd65567567dcvdsfvd", "rthvfd65567567dcvdsfva"],
+            "createdAt": "2023-08-20T05:39:29.020Z",
+            "updatedAt": "2023-08-22T11:01:55.822Z"
+          }]
         }
       },
 
@@ -1226,16 +1542,107 @@
             "example": "success"
           },
           "notice": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
+            "type": "object",
+            "properties":{
+              "_id": {
+                "type": "string",
+                "description": "notice id",
+                "example": "64e1a7112e86345aacbd177b"
+              },
+              "category": {
+                "type": "string",
+                "description": "notice category",
+                "example": "sell"
+              },
+              "name": {
+                "type": "string",
+                "description": "pet's name",
+                "example": "Marsik"
+              },
+              "date": {
+                "type": "string",
+                "description": "date of pet birth",
+                "example": "01-01-2001"
+              },
+              "type": {
+                "type": "string",
+                "description": "type of pet",
+                "example": "cat"
+              },
+              "imageURL": {
+                "type": "string",
+                "description": "pet avatar link",
+                "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg"
+              },
+              "comments": {
+                "type": "string",
+                "description": "additional information about pet",
+                "example": "the best cat in the world"
+              },
+              "sex": {
+                "type": "string",
+                "description": "pet sex",
+                "example": "male"
+              },
+              "location": {
+                "type": "string",
+                "description": "pet location",
+                "example": "Kyiv"
+              },
+              "price": {
+                "type": "integer",
+                "description": "pet selling price",
+                "example": "400"
+              },
+              "owner": {
+                "type": "string",
+                "description": "owner's id",
+                "example": "64e0e47b52f97c596bf8fdab"
+              },
+              "usersId": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "id of user whose has this notice in favorites",
+                  "example": "64e0e63c58543456a820bf03"
+                }
+              },
+              "createAt": {
+                "type": "string",
+                "description": "date of notice creation",
+                "example": "2023-08-20T05:45:47.363Z"
+              },
+              "updateAt": {
+                "type": "string",
+                "description": "date of notice update",
+                "example": "2023-08-20T06:45:40.393Z"
+              }
+            }  
           }
         },
         "example": {
-          "message": "Delete success"
+          "code": "200",
+          "status": "success",
+          "notice": {
+            "_id": "64e1a88b3cab012b6eb44483",
+            "category": "sell",
+            "name": "Marsik",
+            "date": "01-01-2001",
+            "type": "cat",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg",
+            "comments": "the best cat in the world",
+            "sex": "male",
+            "location": "Kyiv",
+            "price": 400,
+            "owner": "64e0e47b52f97c596bf8fdab",
+            "userIds": ["64e0e63c58543456a820bf03"],
+            "createdAt": "2023-08-20T05:45:47.363Z",
+            "updatedAt": "2023-08-20T05:45:47.363Z"
+          }
         }
       },
 
-      "AddDeleteFavoriteResponse": {
+      "AddDeleteFavoriteNoticeResponse": {
         "type": "object",
         "properties": {
           "code": {
