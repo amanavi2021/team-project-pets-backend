@@ -1044,7 +1044,7 @@
             "city": "Lutsk",
             "birthday": "02-02-2002",
             "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b",
-            "favorite": "[gvfdbfgbgfbnfg3434543df, fdfdbfgbgfbnfg3434543df]"
+            "favorite": ["gvfdbfgbgfbnfg3434543df", "fdfdbfgbgfbnfg3434543df"]
           },
           "pets": [
             {
