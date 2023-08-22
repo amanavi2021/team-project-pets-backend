@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 const Joi= require("joi");
 
-const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-\d{4}$/;
 const cityRegexp =/^[a-zA-Z\u0080-\u024F]+(?:([\\ \\-\\']|(\\.\\ ))[a-zA-Z\u0080-\u024F]+)*$/;
 
 const noticeSchema = new Schema(
@@ -75,7 +75,7 @@ const Notice = model("notice", noticeSchema);
 const addNoticeSchema = Joi.object({
   category: Joi.string().valid("sell", "lost-found", "in-good-hands").required(),
   name: Joi.string().min(2).max(16).required(),
-  date: Joi.string().pattern(dateRegexp, "DD.MM.YYYY").required(),
+  date: Joi.string().pattern(dateRegexp, "DD-MM-YYYY").required(),
   type: Joi.string().min(2).max(16).required(),
   comments: Joi.string().max(120),
   sex: Joi.string().valid("male", "female").required(),

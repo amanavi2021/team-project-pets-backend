@@ -30,7 +30,7 @@
     }
   ],
   "paths": {
-    "api/users/register": {
+    "/api/users/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -70,7 +70,7 @@
       }
     },
 
-    "api/users/login": {
+    "/api/users/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
@@ -110,7 +110,7 @@
       }
     },
 
-    "api/users/logout": {
+    "/api/users/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -133,7 +133,7 @@
       }
     },
 
-    "api/users/update": {
+    "/api/users/update": {
       "patch": {
         "tags": ["Auth"],
         "summary": "User update",
@@ -177,12 +177,12 @@
       }
     },
 
-    "api/users/refresh": {
+    "/api/users/refresh": {
       "get": {
         "tags": ["Auth"],
         "summary": "Token refresh",
         "parameters": [],
-        "security": [],
+        "security": [{ "cookieAuth": [] }],
         "responses": {
           "200": {
             "description": "success",
@@ -206,7 +206,7 @@
       }
     },
 
-    "api/users/current": {
+    "/api/users/current": {
       "get": {
         "tags": ["Auth"],
         "summary": "Information about user and his pets",
@@ -239,7 +239,7 @@
       }
     },
 
-    "api/pets": {
+    "/api/pets": {
       "post": {
         "tags": ["Pets"],
         "summary": "Add your pet",
@@ -282,7 +282,7 @@
       }
     },
 
-    "api/pets/:petId": {
+    "/api/pets/{petId}": {
       "delete": {
         "tags": ["Pets"],
         "summary": "Remove your pet",
@@ -325,7 +325,7 @@
       }
     },
 
-    "api/notices/": {
+    "/api/notices/": {
       "post": {
         "tags": ["Notices"],
         "summary": "Add notice",
@@ -369,7 +369,7 @@
         "parameters": [
           {
             "name": "category",
-            "in": "query params",
+            "in": "query",
             "schema": {
               "type": "string",
               "enum": ["sell", "lost-found", "in-good-hands"],
@@ -379,7 +379,7 @@
           },
           {
             "name": "page",
-            "in": "query params",
+            "in": "query",
             "schema": {
               "type": "string",
               "default": 1
@@ -388,7 +388,7 @@
           },
           {
             "name": "limit",
-            "in": "query params",
+            "in": "query",
             "schema": {
               "type": "string",
               "default": 20
@@ -397,7 +397,7 @@
           },
           {
             "name": "searchQuery",
-            "in": "query params",
+            "in": "query",
             "schema": {
               "type": "string"
             },
@@ -415,10 +415,10 @@
       }
     },
 
-    "api/notices/own": {
+    "/api/notices/own": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get own pets",
+        "summary": "Get own notices",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": [],
@@ -441,7 +441,7 @@
       }
     },
 
-    "api/notices/favorites": {
+    "/api/notices/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get favotite notices",
@@ -467,7 +467,7 @@
       }
     },
 
-    "api/notices/:noticeId": {
+    "/api/notices/{noticeId}": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get notice by Id",
@@ -1033,11 +1033,6 @@
           "pet": {
             "type": "object",
             "properties": {
-              "_id": {
-                "type": "string",
-                "description": "Pet's id",
-                "example": "64e0e63c58543456a820bf03"
-              },
               "name": {
                 "type": "string",
                 "description": "Pet's name",
@@ -1064,19 +1059,24 @@
                 "example": "The best cat in the world"
               },
               "owner": {
-                "type": "object",
-                "properties": {
-                  "_id": {
                     "type": "string",
                     "description": "owner's id",
                     "example": "64e0e63c58543456a820bf03"
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "Owner's name",
-                    "example": "Liliia"
-                  }
-                }
+              },
+              "_id": {
+                "type": "string",
+                "description": "Pet's id",
+                "example": "64e0e63c58543456a820bf03"
+              },
+              "createAt": {
+                "type": "string",
+                "description": "pet's creation date",
+                "example": "2023-08-22T13:55:30.663Z"
+              },
+              "updateAt": {
+                "type": "string",
+                "description": "pet's update date",
+                "example": "2023-08-22T13:55:30.663Z"
               }
             }
           }
@@ -1085,16 +1085,15 @@
           "code": "201",
           "status": "success",
           "pet": {
-            "_id": "64e0e63c58543456a820bf03",
             "name": "Barsik",
             "date": "01.01.2001",
             "type": "British Shorthair",
             "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
             "comments": "The best cat in the world",
-            "owner": {
-              "_id": "64e0e47b52f97c596bf8fdab",
-              "name": "Liliia"
-            }
+            "owner": "64e0e47b52f97c596bf8fdab",
+            "_id": "64e0e63c58543456a820bf03",
+            "createdAt": "2023-08-22T13:55:30.663Z",
+            "updatedAt": "2023-08-22T13:55:30.663Z"
           }
         }
       },
@@ -1682,6 +1681,11 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "refreshToken"
       }
     }
   }
