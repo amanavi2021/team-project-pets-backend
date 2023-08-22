@@ -1121,7 +1121,7 @@
 
       "AddNoticeRequest": {
           "type": "object",
-        "required": ["name", "sex", "date", "type", "image", "comments", "category", "location"],
+        "required": ["name", "sex", "date", "price", "type", "image", "comments", "category", "location"],
         "properties": {
           "category": {
             "type": "string",
