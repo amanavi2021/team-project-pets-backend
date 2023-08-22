@@ -1,8 +1,7 @@
 const { Notice } = require("../../models/notice");
 
 const searchNotices = async (req, res) => {
-  const { page = 1, limit = 12, searchQuery } = req.query;
-  const { category } = req.params;
+  const { page = 1, limit = 12, searchQuery, category = "sell" } = req.query;
   const skip = (page - 1) * limit;
 
   const customSearchRequest = {};

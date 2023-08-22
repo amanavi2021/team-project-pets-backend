@@ -19,6 +19,10 @@ router.post(
   ctrl.addNotice
 );
 
+// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
+// та searchQuery - дані з інпуту пошук по "name" + пагінація
+router.get("/", ctrl.searchNotices);
+
 // ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
 router.get("/own", authenticate, ctrl.getOwnNotices);
 
@@ -28,10 +32,6 @@ router.get("/favorites", authenticate, ctrl.getFavoriteNotices);
 // ендпоінт для отримання оголошення по Id
 router.get("/:noticeId", ctrl.getNoticeById);
 // router.get('/:noticeId', isValidId, ctrl.getNoticeById);
-
-// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
-// та searchQuery - дані з інпуту пошук по "name"
-router.get("/:category", isValidCategory, ctrl.searchNotices);
 
 // eндпоінт для додавання і видалення оголошення в обрнані
 router.patch("/:noticeId", authenticate, ctrl.favoriteNotices);
