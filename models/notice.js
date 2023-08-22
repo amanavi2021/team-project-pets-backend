@@ -20,7 +20,7 @@ const noticeSchema = new Schema(
     },
     date: {
       type: String,
-      match: [dateRegexp, "Use date format DD.MM.YYYY"],
+      match: [dateRegexp, "Use date format DD-MM-YYYY"],
       required: [true, "Set birthday for your pet"],
     },
     type: {

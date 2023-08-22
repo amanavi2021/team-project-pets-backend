@@ -3,7 +3,7 @@ const express = require("express");
 const ctrl = require("../../controllers/pets/pets");
 const { schemas } = require("../../models/pet");
 const {
-  isValidId,
+  isValidIdPet,
   authenticate,
   validateBody,
   upload,
@@ -15,6 +15,6 @@ const router = express.Router();
 router.post("/", authenticate, upload.single("image"), validateBody(schemas.addPetSchema), ctrl.addPet);
 
 // ендпоінт для видалення улюбленьця авторизованим користувачем
-router.delete("/:petId", authenticate, isValidId, ctrl.removePet);
+router.delete("/:petId", authenticate, isValidIdPet, ctrl.removePet);
 
 module.exports = router;

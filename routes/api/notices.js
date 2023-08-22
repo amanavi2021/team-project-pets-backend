@@ -24,11 +24,11 @@ router.get("/own", authenticate, ctrl.getOwnNotices);
 router.get("/favorites", authenticate, ctrl.getFavoriteNotices);
 
 // ендпоінт для отримання оголошення по Id
-router.get("/:noticeId", ctrl.getNoticeById);
+router.get("/:noticeId", isValidId, ctrl.getNoticeById);
 // router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
 // eндпоінт для додавання і видалення оголошення в обрнані
-router.patch("/:noticeId", authenticate, ctrl.favoriteNotices);
+router.patch("/:noticeId", authenticate, isValidId, ctrl.favoriteNotices);
 // router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
 
 // ендпоінт для видалення оголошення, автором якого є авторизований користувач
