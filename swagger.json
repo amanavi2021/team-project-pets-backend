@@ -333,7 +333,7 @@
       }
     },
 
-    "/api/notices": {
+    "/api/notices/": {
       "post": {
         "tags": ["Notices"],
         "summary": "Add notice",
