@@ -808,7 +808,7 @@
 
       "UpdateRequest": {
         "type": "object",
-        "required": ["name", "email", "birthday", "phone", "city", "avatarURL"],
+        "required": ["name", "email", "birthday", "phone", "city"],
         "properties": {
           "name": {
             "type": "string",
@@ -1723,6 +1723,7 @@
       }
     },
 
+    
     "securitySchemes": {
       "Bearer": {
         "type": "http",
