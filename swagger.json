@@ -663,7 +663,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "201"
+            "example": 201
           },
           "status": {
             "type": "string",
@@ -710,7 +710,7 @@
           }
         },
         "example": {
-          "code": "201",
+          "code": 201,
           "status": "success",
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2",
           "user": {
@@ -745,7 +745,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -792,7 +792,7 @@
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2",
           "user": {
@@ -822,7 +822,7 @@
           },
           "birthday": {
             "type": "string",
-            "description": "User's birthday date",
+            "description": "User's birth date",
             "example": "02-02-2002"
           },
           "phone": {
@@ -847,7 +847,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -890,7 +890,7 @@
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "user": {
             "name": "Liliia",
@@ -908,7 +908,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -920,7 +920,7 @@
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "token": "ytJhbGciOiJIUz.eyJpZCI6IjY0MTgzZWJ.953U8XHlZd6LGgNPK7jk8"
         }
@@ -931,7 +931,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -962,7 +962,7 @@
               },
               "birthday": {
                 "type": "string",
-                "description": "User's birsthday date",
+                "description": "User's birth date",
                 "example": "02-02-2002"
               },
               "avatarUrl": {
@@ -970,7 +970,7 @@
                 "description": "User's avatar",
                 "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
               },
-               "favorite": {
+              "favorite": {
                 "type": "array",
                 "items": {
                   "type": "string",
@@ -987,40 +987,40 @@
               "properties": {
                 "_id": {
                   "type": "string",
-                  "description": "pet's id",
+                  "description": "Pet's id",
                   "example": "64e0e63c58543456a820bf03"
                 },
                 "name": {
                   "type": "string",
-                  "description": "pet's name",
+                  "description": "Pet's name",
                   "example": "Marsik"
                 },
                 "date": {
                   "type": "string",
-                  "description": "pet's birthday date",
+                  "description": "Pet's birthday date",
                   "example": "01-01-2001"
                 },
                 "type": {
                   "type": "string",
-                  "description": "pet's type",
+                  "description": "Pet's type",
                   "example": "cat"
                 },
                 "imageURL": {
                   "type": "string",
-                  "description": "pet's avatar link",
+                  "description": "Pet's avatar link",
                   "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
                 },
                 "comments": {
                   "type": "string",
-                  "description": "comments about pets",
-                  "example": "the best cat in the world"
+                  "description": "Comments about pets",
+                  "example": "The best cat in the world"
                 },
                 "owner": {
                   "type": "object",
                   "properties": {
                     "_id": {
                       "type": "string",
-                      "description": "owner's id",
+                      "description": "Owner's id",
                       "example": "64e0e63c58543456a820bf03"
                     },
                     "name": {
@@ -1035,7 +1035,7 @@
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "user": {
             "name": "Liliia",
@@ -1073,7 +1073,7 @@
           },
           "date": {
             "type": "string",
-            "description": "Pet's birthday date DD-MM-YYYY"
+            "description": "Pet's birth date DD-MM-YYYY"
           },
           "type": {
             "type": "string",
@@ -1086,7 +1086,7 @@
           },
           "comments": {
             "type": "string",
-            "description": "Comments about pets"
+            "description": "Comments about pet"
           }
         }
       },
@@ -1096,7 +1096,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "201"
+            "example": 201
           },
           "status": {
             "type": "string",
@@ -1112,7 +1112,7 @@
               },
               "date": {
                 "type": "string",
-                "description": "Pet's birthday date",
+                "description": "Pet's birth date",
                 "example": "DD-MM-YYYY"
               },
               "type": {
@@ -1127,12 +1127,12 @@
               },
               "comments": {
                 "type": "string",
-                "description": "Comments about pets",
+                "description": "Comments about pet",
                 "example": "The best cat in the world"
               },
               "owner": {
                     "type": "string",
-                    "description": "owner's id",
+                    "description": "Owner's id",
                     "example": "64e0e63c58543456a820bf03"
               },
               "_id": {
@@ -1142,19 +1142,19 @@
               },
               "createAt": {
                 "type": "string",
-                "description": "pet's creation date",
+                "description": "Pet's information creation date",
                 "example": "2023-08-22T13:55:30.663Z"
               },
               "updateAt": {
                 "type": "string",
-                "description": "pet's update date",
+                "description": "Pet's information update date",
                 "example": "2023-08-22T13:55:30.663Z"
               }
             }
           }
         },
         "example": {
-          "code": "201",
+          "code": 201,
           "status": "success",
           "pet": {
             "name": "Barsik",
@@ -1175,15 +1175,11 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
             "example": "success"
-          },
-          "petId": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
           }
           },
         "example": {
@@ -1192,12 +1188,12 @@
       },
 
       "AddNoticeRequest": {
-          "type": "object",
-        "required": ["name", "sex", "date", "price", "type", "image", "comments", "category", "location"],
+        "type": "object",
+        "required": ["name", "sex", "date", "type", "image", "comments", "category", "location"],
         "properties": {
           "category": {
             "type": "string",
-            "description": "notice category [sell lost-found in-good-hands]"
+            "description": "Notice category: [sell lost-found in-good-hands]"
           },
           "name": {
             "type": "string",
@@ -1205,7 +1201,7 @@
           },
           "sex": {
             "type": "string",
-            "description": "[male female]",
+            "description": "Pet's sex: [male female]",
             "example": "male"
           },
           "type": {
@@ -1218,12 +1214,12 @@
           },
           "location": {
             "type": "string",
-            "description": "pet's location",
+            "description": "Pet's location",
             "example": "Kyiv"
           },
           "price": {
             "type": "integer",
-            "description": "pet's selling price",
+            "description": "Pet's selling price. This field is required if category is [ sell ]",
             "example": "500"
           },
           "image": {
@@ -1242,7 +1238,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "201"
+            "example": 201
           },
           "status": {
             "type": "string",
@@ -1253,82 +1249,82 @@
             "properties":{
               "category": {
                 "type": "string",
-                "description": "notice category",
+                "description": "Notice category",
                 "example": "sell"
               },
               "name": {
                 "type": "string",
-                "description": "pet's name",
+                "description": "Pet's name",
                 "example": "Marsik"
               },
               "date": {
                 "type": "string",
-                "description": "date of pet birth",
+                "description": "Date of pet's birth",
                 "example": "01-01-2001"
               },
               "type": {
                 "type": "string",
-                "description": "type of pet",
+                "description": "Type of pet",
                 "example": "cat"
               },
               "imageURL": {
                 "type": "string",
-                "description": "pet avatar link",
+                "description": "Pet's avatar link",
                 "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg"
               },
               "comments": {
                 "type": "string",
-                "description": "additional information about pet",
+                "description": "Additional information about pet",
                 "example": "the best cat in the world"
               },
               "sex": {
                 "type": "string",
-                "description": "pet sex",
+                "description": "Pet's sex",
                 "example": "male"
               },
               "location": {
                 "type": "string",
-                "description": "pet location",
+                "description": "Pet's location",
                 "example": "Kyiv"
               },
               "price": {
                 "type": "integer",
-                "description": "pet selling price",
+                "description": "Pet's selling price",
                 "example": "400"
               },
               "owner": {
                 "type": "string",
-                "description": "owner's id",
+                "description": "Owner's id",
                 "example": "64e0e47b52f97c596bf8fdab"
               },
               "usersId": {
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "description": "id of user whose has this notice in favorites",
+                  "description": "Id of user who added this notice in favorites",
                   "example": "64e0e63c58543456a820bf03"
                 }
               },
               "_id":{
                 "type": "string",
-                "description": "noptice id",
+                "description": "Noptice id",
                 "example": "64e485a3b58ba71467f879ea"
               },
               "createAt": {
                 "type": "string",
-                "description": "date of notice creation",
+                "description": "Date of notice creation",
                 "example": "2023-08-20T05:45:47.363Z"
               },
               "updateAt": {
                 "type": "string",
-                "description": "date of notice update",
+                "description": "Date of notice update",
                 "example": "2023-08-20T06:45:40.393Z"
               }
             }
           }
         },
         "example": {
-          "code": "201",
+          "code": 201,
           "status": "success",
           "notice": {
             "category": "sell",
@@ -1336,7 +1332,7 @@
             "date": "01-01-2001",
             "type": "cat",
             "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg",
-            "comments": "the best cat in the world",
+            "comments": "The best cat in the world",
             "sex": "male",
             "location": "Kyiv",
             "price": 400,
@@ -1349,33 +1345,12 @@
         }
       },
 
-      "SearchResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "example": "200"
-          },
-          "status": {
-            "type": "string",
-            "example": "success"
-          },
-          "petId": {
-            "type": "string",
-            "example": "64e0e63c58543456a820bf03"
-          }
-        },
-        "example": {
-          "message": "Delete success"
-        }
-      },
-
       "GetOwnNoticeResponse": {
         "type": "object",
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -1388,12 +1363,12 @@
               "properties": {
                 "_id": {
                   "type": "string",
-                  "description": "Notice's id",
+                  "description": "Notice Id",
                   "example": "64e0e63c58543456a820bf03"
                 },
                 "category": {
                   "type": "string",
-                  "description": "notece's category",
+                  "description": "Notice category",
                   "example": "sell"
                 },
                 "name": {
@@ -1403,7 +1378,7 @@
                 },
                 "date": {
                   "type": "string",
-                  "description": "Pet's birthday date",
+                  "description": "Pet's birth date",
                   "example": "DD-MM-YYYY"
                 },
                 "type": {
@@ -1418,22 +1393,22 @@
                 },
                 "comments": {
                   "type": "string",
-                  "description": "Comments about pets",
+                  "description": "Comments about pet",
                   "example": "The best cat in the world"
                 },
                 "sex": {
                   "type": "string",
-                  "description": "pet's sex",
+                  "description": "Pet's sex",
                   "example": "male"
                 },
                 "location": {
                   "type": "string",
-                  "description": "pet's location",
+                  "description": "Pet's location",
                   "example": "Kyiv"
                 },
                 "price": {
                   "type": "integer",
-                  "description": "pet's selling price",
+                  "description": "Pet's selling price",
                   "example": "500"
                 },
                 "owner": {
@@ -1441,7 +1416,7 @@
                   "properties": {
                     "_id": {
                       "type": "string",
-                      "description": "owner's id",
+                      "description": "Owner's id",
                       "example": "64e0e63c58543456a820bf03"
                     },
                     "name": {
@@ -1455,7 +1430,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "description": "id of user whose has this notice in favorites",
+                    "description": "Id of user who added this notice in favorites",
                     "example": "dfdgvdfbg3434hjjhk5"
                   }
                 }
@@ -1464,7 +1439,7 @@
             }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "notices": [{
             "_id": "64e0e63c58543456a820bf03",
@@ -1491,7 +1466,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -1504,12 +1479,12 @@
               "properties": {
                 "_id": {
                   "type": "string",
-                  "description": "Notice's id",
+                  "description": "Notice Id",
                   "example": "64e0e63c58543456a820bf03"
                 },
                 "category": {
                   "type": "string",
-                  "description": "notece's category",
+                  "description": "Notece category",
                   "example": "sell"
                 },
                 "name": {
@@ -1519,7 +1494,7 @@
                 },
                 "date": {
                   "type": "string",
-                  "description": "Pet's birthday date",
+                  "description": "Pet's birth date",
                   "example": "DD-MM-YYYY"
                 },
                 "type": {
@@ -1539,40 +1514,40 @@
                 },
                 "sex": {
                   "type": "string",
-                  "description": "pet's sex",
+                  "description": "Pet's sex",
                   "example": "male"
                 },
                 "location": {
                   "type": "string",
-                  "description": "pet's location",
+                  "description": "Pet's location",
                   "example": "Kyiv"
                 },
                 "price": {
                   "type": "integer",
-                  "description": "pet's selling price",
+                  "description": "Pet's selling price",
                   "example": "500"
                 },
                 "owner": {
                   "type": "string",
-                  "description": "owner's id",
+                  "description": "Owner's Id",
                   "example": "64e0e63c58543456a820bf03"
                 },
                 "usersIds": {
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "description": "id of user whose has this notice in favorites",
+                    "description": "Id of user who added this notice in favorites",
                     "example": "dfdgvdfbg3434hjjhk5"
                   }
                 },
                 "createdAt": {
                   "type": "string",
-                  "description": "date of notice creation",
+                  "description": "Date of notice creation",
                   "example": "2023-08-20T05:39:29.020Z"
                 },
                 "updateAt": {
                   "type": "string",
-                  "description": "date of notice update",
+                  "description": "Date of notice update",
                   "example": "2023-08-20T05:39:29.020Z"
                 }
               }
@@ -1580,7 +1555,7 @@
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "notices": [{
             "_id": "64e0e63c58543456a820bf03",
@@ -1606,7 +1581,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -1617,82 +1592,82 @@
             "properties":{
               "_id": {
                 "type": "string",
-                "description": "notice id",
+                "description": "Notice Id",
                 "example": "64e1a7112e86345aacbd177b"
               },
               "category": {
                 "type": "string",
-                "description": "notice category",
+                "description": "Notice category",
                 "example": "sell"
               },
               "name": {
                 "type": "string",
-                "description": "pet's name",
+                "description": "Pet's name",
                 "example": "Marsik"
               },
               "date": {
                 "type": "string",
-                "description": "date of pet birth",
+                "description": "Date of pet birth",
                 "example": "01-01-2001"
               },
               "type": {
                 "type": "string",
-                "description": "type of pet",
+                "description": "Type of pet",
                 "example": "cat"
               },
               "imageURL": {
                 "type": "string",
-                "description": "pet avatar link",
+                "description": "Pet's image link",
                 "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg"
               },
               "comments": {
                 "type": "string",
-                "description": "additional information about pet",
-                "example": "the best cat in the world"
+                "description": "Additional information about pet",
+                "example": "The best cat in the world"
               },
               "sex": {
                 "type": "string",
-                "description": "pet sex",
+                "description": "Pet's sex",
                 "example": "male"
               },
               "location": {
                 "type": "string",
-                "description": "pet location",
+                "description": "Pet's location",
                 "example": "Kyiv"
               },
               "price": {
                 "type": "integer",
-                "description": "pet selling price",
+                "description": "Pet's selling price",
                 "example": "400"
               },
               "owner": {
                 "type": "string",
-                "description": "owner's id",
+                "description": "Owner's Id",
                 "example": "64e0e47b52f97c596bf8fdab"
               },
               "usersId": {
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "description": "id of user whose has this notice in favorites",
+                  "description": "Id of user who added this notice in favorites",
                   "example": "64e0e63c58543456a820bf03"
                 }
               },
               "createAt": {
                 "type": "string",
-                "description": "date of notice creation",
+                "description": "Date of notice creation",
                 "example": "2023-08-20T05:45:47.363Z"
               },
               "updateAt": {
                 "type": "string",
-                "description": "date of notice update",
+                "description": "Date of notice update",
                 "example": "2023-08-20T06:45:40.393Z"
               }
             }  
           }
         },
         "example": {
-          "code": "200",
+          "code": 200,
           "status": "success",
           "notice": {
             "_id": "64e1a88b3cab012b6eb44483",
@@ -1701,7 +1676,7 @@
             "date": "01-01-2001",
             "type": "cat",
             "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692510346/pets/et4wxw3iyb8e4eonlu6y.jpg",
-            "comments": "the best cat in the world",
+            "comments": "The best cat in the world",
             "sex": "male",
             "location": "Kyiv",
             "price": 400,
@@ -1718,7 +1693,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "200"
+            "example": 200
           },
           "status": {
             "type": "string",
@@ -1735,7 +1710,7 @@
         "properties": {
           "code": {
             "type": "integer",
-            "example": "204"
+            "example": 204
           },
           "status": {
             "type": "string",
@@ -1743,7 +1718,7 @@
           }
           },
         "example": {
-          "message": "Notice deleted"
+          "message": "Notice is deleted"
         }
       }
     },
