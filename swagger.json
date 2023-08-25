@@ -373,7 +373,7 @@
       },
       "get": {
         "tags": ["Notices"],
-        "summary": "Get list of the pets sorted by category",
+        "summary": "Get notices list of the selected category",
         "parameters": [
           {
             "name": "category",
@@ -414,7 +414,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Filtered array of notices"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSearchResponse"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not found"
@@ -452,7 +459,7 @@
     "/api/notices/favorites": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get favotite notices",
+        "summary": "Get favorite notices",
         "parameters": [],
         "security": [{ "Bearer": [] }],
       "requestBody": [],
@@ -1345,6 +1352,110 @@
         }
       },
 
+      
+      "GetSearchResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": 200
+          },
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "notices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Notice Id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "Notice category",
+                  "example": "sell"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Pet's name",
+                  "example": "Barsik"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Pet's birth date",
+                  "example": "DD-MM-YYYY"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Pet's breed",
+                  "example": "British Shorthair"
+                },
+                "imageURL": {
+                  "type": "string",
+                  "description": "Pet's image link",
+                  "example": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg"
+                },
+                "comments": {
+                  "type": "string",
+                  "description": "Comments about pet",
+                  "example": "The best cat in the world"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "Pet's sex",
+                  "example": "male"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Pet's location",
+                  "example": "Kyiv"
+                },
+                "price": {
+                  "type": "integer",
+                  "description": "Pet's selling price",
+                  "example": 100
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "Owner's id",
+                  "example": "64e0e63c58543456a820bf03"
+                },
+                "usersIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Id of user who added this notice in favorites",
+                    "example": "dfdgvdfbg3434hjjhk5"
+                  }
+                }
+            }
+          }
+            }
+        },
+        "example": {
+          "code": 200,
+          "status": "success",
+          "notices": [{
+            "_id": "64e0e63c58543456a820bf03",
+            "category": "sell",
+            "name": "Barsik",
+            "date": "01-01-2001",
+            "type": "British Shorthair",
+            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+            "comments": "The best cat in the world",
+            "sex": "male",
+            "location": "Kyiv",
+            "price": 100,
+            "owner": "64e0e47b52f97c596bf8fdab",
+            "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
+          }]
+        }
+      },
+
       "GetOwnNoticeResponse": {
         "type": "object",
         "properties": {
@@ -1409,7 +1520,7 @@
                 "price": {
                   "type": "integer",
                   "description": "Pet's selling price",
-                  "example": "500"
+                  "example": 500
                 },
                 "owner": {
                   "type": "object",
