@@ -77,7 +77,7 @@ const updateSchema = Joi.object({
 // eslint-disable-next-line
    phone: Joi.string().pattern(/^\+\d{12}$/),
 // eslint-disable-next-line
-   birthday: Joi.string().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}&/),
+   birthday: Joi.string().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}$/),
 // eslint-disable-next-line
    city: Joi.string(),
 })
