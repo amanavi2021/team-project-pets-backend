@@ -52,6 +52,9 @@ const noticeSchema = new Schema(
       type: Number, 
       min: 0,
       default: 0, 
+      required: ()=> {
+        return this.category === "sell";
+      }
          
     },
     owner: {
