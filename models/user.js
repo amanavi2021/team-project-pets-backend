@@ -17,11 +17,11 @@ const userSchema = new Schema({
   },
   token: {
     type: String,
-    default: null,
+    default: "",
   }, 
   refreshToken: {
     type: String,
-    default: null,
+    default: "",
   },
   name: {
     type: String,
@@ -29,11 +29,11 @@ const userSchema = new Schema({
   },
   phone: {
     type: String,
-    default: null,
+    default: "",
   },
   city: {
     type: String,
-    default: null,
+    default: "",
   },
   birthday: {
     type: String,
