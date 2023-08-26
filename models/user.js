@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const { handleMongooseError } = require("../helpers");
 
+const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-\d{4}$/;
+
+
 const userSchema = new Schema({
   password: {
     type: String,
@@ -34,6 +37,7 @@ const userSchema = new Schema({
   },
   birthday: {
     type: String,
+    match: [dateRegexp, "Use date format DD.MM.YYYY"],
     default: '01-01-2001',
   },
   avatarURL: {
