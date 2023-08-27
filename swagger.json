@@ -352,7 +352,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successfull operation",
+            "description": "Success operation",
             "content": {
               "application/json": {
                 "schema": {
@@ -1814,7 +1814,7 @@
           }
           },
         "example": {
-          "message": "Successfull operation"
+          "message": "Success operation"
         }
       },
 
@@ -1827,7 +1827,7 @@
           },
           "status": {
             "type": "string",
-            "example": "Succssfull operation"
+            "example": "Success operation"
           }
           },
         "example": {
