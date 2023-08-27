@@ -1,29 +1,32 @@
-## GoIT Node.js Course Template Homework
+# Your Pet
 
-Wykonaj forka tego repozytorium, aby wykonywać zadania domowe (2-6). Fork utworzy repozytorium na Twoim koncie na http://github.com
+📚 Projekt zespołowy | Backend
 
-Dodaj mentora jako collaboratora.
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](#) [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](#) [![Cloudinary](https://img.shields.io/badge/Cloudinary-2986cc?style=for-the-badge&logo=cloudinary&logoColor=white)](#)
 
-Dla każdego zadania domowego utwórz nową gałąź (branch).
+_______________________
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+[Swagger](https://team-project-pets-backend.onrender.com/api-docs/) dokumentacja
 
-Każda nowa gałąź dla zadania powinna być tworzona z gałęzi master.
+- [Frontend GH Pages](https://sig1smund.github.io/final-fullstack-team-proj/)
+- [Frontend source](https://github.com/Sig1smund/final-fullstack-team-proj)
 
-Po zakończeniu wykonania zadania domowego na swojej gałęzi, należy zrobić pull request (PR). Następnie dodaj mentora do przeglądu kodu. Dopiero po zatwierdzeniu PR przez mentora możesz scalić gałąź z zadaniem domowym do gałęzi master.
+Backend do aplikacji znajdowania, sprzedawania i przekazywania zwierząt domowych. Nieupoważnieni użytkownicy mogą wyszukiwać ogłoszenia o zwierzętach, autoryzowani użytkownicy mogą dodawać/usuwać ogłoszenia, dodawać ogłoszenia do ulubionych, dodawać/usuwać informacje o swoich zwierzętach.
 
-Uważnie czytaj komentarze mentora. Popraw uwagi i zrób commit na gałęzi z zadaniem domowym. Zmiany automatycznie pojawią się w PR po wysłaniu commitu z poprawkami na GitHub. Po poprawkach ponownie dodaj mentora do przeglądu kodu.
+_____________________
 
-- Podczas oddawania zadania domowego podaj link do PR.
-- Kod JS jest czytelny i zrozumiały, do formatowania używany jest Prettier.
+## Instalacja
 
-### Komendy:
-
-- `npm start` &mdash;  uruchamia serwer w trybie produkcyjnym
+- `npm start` &mdash; uruchamia serwer w trybie produkcyjnym
 - `npm run start:dev` &mdash; uruchamia serwer w trybie deweloperskim (development)
-- `npm run lint` &mdash; uruchamia sprawdzanie kodu z ESLint, należy wykonać przed każdym PR i poprawić wszystkie błędy lintera
-- `npm lint:fix` &mdash; to samo co powyższe, ale również automatycznie poprawia proste błędy.
+
+## Zalety
+
+- Odnowienie tokena bez konieczności ponownej autoryzacji.
+- Aktualizacja informacji o użytkowniku i awatara.
+- Poszukiwania ogłoszenia według słowa kluczowego w tytule i kategorii.
+- Dodanie ogłoszenia do ulubionych
+
+## Prawo autorskie
+
+[MIT](https://opensource.org/licenses/MIT)
