@@ -9,11 +9,11 @@ const searchNotices = async (req, res) => {
 
   if (searchQuery) {
     customSearchRequest.name = { $regex: searchQuery, $options: "i" };
-  };
+  }
 
   if (category) {
     customSearchRequest.category = category;
-  };
+  }
 
   const result = await Notice.find(
     customSearchRequest,
@@ -22,7 +22,7 @@ const searchNotices = async (req, res) => {
       skip,
       limit,
     }
-  );
+  ).populate("owner", "name email phone");
 
   res.status(200).json({
     code: 200,
