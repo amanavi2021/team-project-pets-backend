@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "2.0.2",
-    "title": "Swagger test",
-    "description": "Showing off swagger-ui-express",
+    "title": "You pet",
+    "description": "Backend for searching, selling and gifting pets applications. It allows to search notices for non-authorized users and for authorized users there is a possibility to add/delete notices, add notice to favorite notices, add/delete information about own pets.",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -12,8 +12,8 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
-    { "url": "http://localhost:3000" },
-    { "url": "https://team-project-pets-backend.onrender.com" }
+    { "url": "https://team-project-pets-backend.onrender.com/api" },
+    { "url": "http://localhost:3000/api" }
   ],
   "tags": [
     {
@@ -32,13 +32,13 @@
       "name": "News",
       "description": "News endpoints"
     },
-     {
+    {
       "name": "Services",
       "description": "Services endpoints"
     }
   ],
   "paths": {
-    "/api/users/register": {
+    "/users/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -78,7 +78,7 @@
       }
     },
 
-    "/api/users/login": {
+    "/users/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
@@ -118,7 +118,7 @@
       }
     },
 
-    "/api/users/logout": {
+    "/users/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -141,7 +141,7 @@
       }
     },
 
-    "/api/users/update": {
+    "/users/update": {
       "patch": {
         "tags": ["Auth"],
         "summary": "User update",
@@ -185,7 +185,7 @@
       }
     },
 
-    "/api/users/refresh": {
+    "/users/refresh": {
       "get": {
         "tags": ["Auth"],
         "summary": "Token refresh",
@@ -214,7 +214,7 @@
       }
     },
 
-    "/api/users/current": {
+    "/users/current": {
       "get": {
         "tags": ["Auth"],
         "summary": "Information about user and his pets",
@@ -247,7 +247,7 @@
       }
     },
 
-    "/api/pets": {
+    "/pets": {
       "post": {
         "tags": ["Pets"],
         "summary": "Add your pet",
@@ -290,7 +290,7 @@
       }
     },
 
-    "/api/pets/{petId}": {
+    "/pets/{petId}": {
       "delete": {
         "tags": ["Pets"],
         "summary": "Remove your pet",
@@ -333,7 +333,7 @@
       }
     },
 
-    "/api/notices/": {
+    "/notices/": {
       "post": {
         "tags": ["Notices"],
         "summary": "Add notice",
@@ -430,7 +430,7 @@
       }
     },
 
-    "/api/notices/own": {
+    "/notices/own": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get own notices",
@@ -456,7 +456,7 @@
       }
     },
 
-    "/api/notices/favorites": {
+    "/notices/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get favorite notices",
@@ -482,7 +482,7 @@
       }
     },
 
-    "/api/notices/{noticeId}": {
+    "/notices/{noticeId}": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get notice by Id",
@@ -585,7 +585,7 @@
       }
     },
 
-    "/api/news/": {
+    "/news/": {
       "get": {
         "tags": ["News"],
         "summary": "Get news",
@@ -622,8 +622,7 @@
       }
     },
 
-
-    "/api/services/": {
+    "/services/": {
       "get": {
         "tags": ["Services"],
         "summary": "Get services",
@@ -1187,10 +1186,15 @@
           "status": {
             "type": "string",
             "example": "success"
+          },
+          "id": {
+            "type": "string",
+            "example": "64e0e63c58543456a820bf03"
           }
           },
         "example": {
-          "message": "Delete success"
+          "message": "Delete success",
+          "id": "64e0e47b52f97c596bf8fdab"
         }
       },
 
@@ -1352,7 +1356,6 @@
         }
       },
 
-      
       "GetSearchResponse": {
         "type": "object",
         "properties": {

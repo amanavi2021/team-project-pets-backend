@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const { handleMongooseError } = require("../helpers");
-
+// eslint-disable-next-line
 const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|1[0-2])\-\d{4}$/;
 
 
@@ -37,7 +37,7 @@ const userSchema = new Schema({
   },
   birthday: {
     type: String,
-    match: [dateRegexp, "Use date format DD.MM.YYYY"],
+    match: [dateRegexp, "Use date format DD-MM-YYYY"],
     default: '01-01-2001',
   },
   avatarURL: {
@@ -54,7 +54,7 @@ const userSchema = new Schema({
 userSchema.post("save", handleMongooseError);
 
 
-// ////// Joi schemas
+//  Joi schemas
 
 const registrationSchema = Joi.object({
 // eslint-disable-next-line
@@ -79,11 +79,11 @@ const updateSchema = Joi.object({
 // eslint-disable-next-line
   name: Joi.string().pattern(/^[a-zA-zа-яіїєА-ЯІЇЄ-]{2,16}$/),
 // eslint-disable-next-line
-   phone: Joi.string().pattern(/^\+\d{12}$/),
+  phone: Joi.string().pattern(/^\+\d{12}$/),
 // eslint-disable-next-line
-   birthday: Joi.string().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}$/),
+  birthday: Joi.string().pattern(/^\d{1,2}\-\d{1,2}\-\d{4}$/),
 // eslint-disable-next-line
-   city: Joi.string(),
+  city: Joi.string(),
 })
 
 

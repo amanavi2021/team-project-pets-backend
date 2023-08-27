@@ -1,31 +1,32 @@
-## GoIT Node.js Course Template Homework
+# Your Pet
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+📚 Team project | Backend
 
-Додайте ментора до колаборації
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](#) [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](#) [![Cloudinary](https://img.shields.io/badge/Cloudinary-2986cc?style=for-the-badge&logo=cloudinary&logoColor=white)](#)
 
-Для кожної домашньої роботи створюйте свою гілку.
+_______________________
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+[Swagger](https://team-project-pets-backend.onrender.com/api-docs/) documentation
 
-Кожна нова гілка для др повинна робитися з master
+- [Frontend GH Pages](https://sig1smund.github.io/final-fullstack-team-proj/)
+- [Frontend source](https://github.com/Sig1smund/final-fullstack-team-proj)
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
+Backend for searching, selling and gifting pets applications. It allows to search notices for non-authorized users and for authorized users there is a possibility to add/delete notices, add notice to favorite notices, add/delete information about own pets.
 
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
+_____________________
 
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
+## Installation
 
-### Команди:
+- `npm start` &mdash; server start in production mode
+- `npm run start:dev` &mdash; server start in development mode
 
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+## Features
+
+- Refresh tocken without relogin
+- Update user's data and avatar
+- Search notices by title keyword and category
+- Add nocite to favorite notices
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
