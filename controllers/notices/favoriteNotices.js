@@ -39,7 +39,7 @@ const favoriteNotices = async (req, res) => {
     res.status(200).json({
         code: 200,
         status: 'success',
-        message: "Successfull operation"
+        message: "Success operation"
     });
 };
 

@@ -814,7 +814,6 @@
 
       "UpdateRequest": {
         "type": "object",
-        "required": ["name", "email", "birthday", "phone", "city"],
         "properties": {
           "name": {
             "type": "string",

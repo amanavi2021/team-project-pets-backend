@@ -3,23 +3,25 @@ const router = express.Router();
 
 const ctrl = require("../../controllers/auth");
 const { validateBody, authenticate, upload } = require("../../middlewares");
-const {schemas} = require("../../models/user")
-// ендпоінтт реєстрації користувача
+const { schemas } = require("../../models/user");
+
+
+// User registration endpoint
 router.post("/register", validateBody(schemas.registrationSchema), ctrl.register);
 
-// ендпоінт логінізації користувача
+// User login endpoint 
 router.post("/login", validateBody(schemas.loginSchema), ctrl.login);
 
-// ендпоінт для логаута користувача
+// User logout endpoint
 router.post("/logout", authenticate, ctrl.logout);
 
-// ендпоінт рефрешу токена (якщо токен доступу протух)
+// Token refresh endpoint
 router.get('/refresh', ctrl.refresh);
 
-// ендпоїнт оновлення даних користувача
+// Update user data endpoint 
 router.patch('/update', authenticate, validateBody(schemas.updateSchema), upload.single('avatarURL'), ctrl.update);
 
-// ендпоінт даних поточного користувача
+// Get current user data endpoint 
 router.get("/current", authenticate, ctrl.current);
 
 

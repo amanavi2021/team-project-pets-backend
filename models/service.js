@@ -1,20 +1,7 @@
 const { Schema, model } = require("mongoose");
+
 const { handleMongooseError } = require("../helpers");
 
-// const workSchema  = new Schema({
-//     isOpen: {
-//         type: Boolean,
-//         default: false,
-//     },
-//     from: {
-//         type: String,
-//         default: "",
-//     },
-//     to: {
-//         type: String,
-//         default: "",
-//     }
-// });
 
 const serviceSchema = new Schema({
     title: {

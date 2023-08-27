@@ -1,4 +1,4 @@
-// отримати дані поточного користувача
+// get current user date 
 const { Pet } = require("../../models/pet");
 
 const current = async (req, res) => {

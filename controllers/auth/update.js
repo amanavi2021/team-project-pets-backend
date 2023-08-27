@@ -6,7 +6,6 @@ const update = async(req, res) => {
     const { name, email, birthday, phone, city } = req.body;
     const avatarURL = req.file ? req.file.path : req.user.avatarURL;
   
-
   const updateData = await User.findOneAndUpdate(_id,
     {
       name,

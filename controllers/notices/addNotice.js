@@ -4,7 +4,8 @@ const addNotice = async (req, res) => {
     const {_id: owner} = req.user;
     const imageURL = req.file.path;
    
-    const result  = await Notice.create({...req.body, imageURL, owner});
+    const result = await Notice.create({ ...req.body, imageURL, owner });
+    
     res.status(201).json({
         code: 201,
         status: "success",
