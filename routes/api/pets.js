@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 
 const ctrl = require("../../controllers/pets/pets");
 const { schemas } = require("../../models/pet");
@@ -9,14 +10,14 @@ const {
   upload,
 } = require("../../middlewares");
 
-const router = express.Router();
 
 
-
-// ендпоінт для додавання улюбленьця авторизованим користувачем
+// Add pet by authorized user endpoint 
 router.post("/", authenticate, upload.single("image"), validateBody(schemas.addPetSchema), ctrl.addPet);
 
-// ендпоінт для видалення улюбленьця авторизованим користувачем
+// Delete pet by authorized user endpoint 
 router.delete("/:petId", authenticate, isValidIdPet, ctrl.removePet);
+
+
 
 module.exports = router;

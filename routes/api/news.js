@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ctrl = require("../../controllers/news");
 
-// ендпоінт для отримання новин
+// Get news endpoint
 router.get('/', ctrl.getNews);
 
 module.exports = router;

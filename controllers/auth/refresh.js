@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { REFRESH_SECRET_KEY } = process.env;
+
 const { User } = require('../../models/user');
 const { HttpError } = require('../../helpers');
 const { tokens } = require('../../helpers/tokens');
@@ -8,8 +9,6 @@ const { tokens } = require('../../helpers/tokens');
 
 const refresh = async (req, res) => {
     const reqRefToken = req.cookies.refreshToken;
-  
-    
 
     if (!reqRefToken) {
         throw HttpError(401, "Not authorized");
@@ -17,6 +16,7 @@ const refresh = async (req, res) => {
     
     try {
         const { id } = jwt.verify(reqRefToken, REFRESH_SECRET_KEY);
+        
         const isExist = await User.findOne({ reqRefToken});
 
         if (!isExist) {

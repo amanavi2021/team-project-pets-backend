@@ -3,6 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const swaggerUi = require("swagger-ui-express");
+
 const swaggerDocument = require("./swagger.json");
 
 require("dotenv").config();
@@ -37,6 +38,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;
+  
   res.status(status).json({ message });
 });
 

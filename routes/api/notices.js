@@ -1,6 +1,6 @@
 const express = require("express");
-const ctrl = require("../../controllers/notices");
 const router = express.Router();
+
 const {
   isValidId,
   authenticate,
@@ -8,30 +8,30 @@ const {
   upload,
 } = require("../../middlewares");
 const { schemas } = require("../../models/notice");
+const ctrl = require("../../controllers/notices");
 
 
-// ендпоінт для додавання оголошення авторизованим користувачем в
+// Add notice by authorized user endpoint 
 router.post("/", authenticate, upload.single("image"), validateBody(schemas.addNoticeSchema), ctrl.addNotice);
 
-// ендпоінт для пошуку оголошень за параметрами category "sell"-за замовчуванням
-// та searchQuery - дані з інпуту пошук по "name" + пагінація
+// Endpoint for search notice by parameter category (a priory "sell")
+// and searchQuery (search by name  + pagination)
 router.get("/", ctrl.searchNotices);
 
-// ендпоінт для отримання оголошеннь, автором яких є авторизований користувач
+// Get own notices by authorized user endpoint 
 router.get("/own", authenticate, ctrl.getOwnNotices);
 
-// eндпоінт для отримання обраних оголошень
+// Get favorite notices by authorized user endpoint 
 router.get("/favorites", authenticate, ctrl.getFavoriteNotices);
 
-// ендпоінт для отримання оголошення по Id
+// Get notice by Id endpoint
 router.get("/:noticeId", isValidId, ctrl.getNoticeById);
-// router.get('/:noticeId', isValidId, ctrl.getNoticeById);
 
-// eндпоінт для додавання і видалення оголошення в обрнані
+// Add/delete notice into/from favorites 
 router.patch("/:noticeId", authenticate, isValidId, ctrl.favoriteNotices);
-// router.patch('/:noticeId', authenticate, isValidId, ctrl.favoriteNotices);
 
-// ендпоінт для видалення оголошення, автором якого є авторизований користувач
+//  Delete notice by authorized user endpoint 
 router.delete("/:noticeId", authenticate, isValidId, ctrl.removeNotice);
+
 
 module.exports = router;
