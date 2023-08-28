@@ -21,6 +21,7 @@ const searchNotices = async (req, res) => {
     {
       skip,
       limit,
+      sort: { createdAt: -1 },
     }
   ).populate("owner", "name email phone");
 
