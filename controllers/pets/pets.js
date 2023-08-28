@@ -18,19 +18,12 @@ const addPet = async (req, res) => {
 // delete pet
 const removePet = async (req, res) => {
   const { petId } = req.params;
-  const { _id: owner } = req.user;
 
-  const result = await Pet.findById(petId);
+  const result = await Pet.findByIdAndRemove(petId);
 
   if (!result) {
     throw HttpError(404, "Pet with this id not found");
   }
-
-  if (result.owner !== owner) {
-    throw HttpError(403, "You can't delete other users pet's card");
-  }
-
-  await result.remove();
 
   res.json({
     message: "Delete success",
