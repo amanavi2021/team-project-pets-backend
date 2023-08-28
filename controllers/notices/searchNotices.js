@@ -8,7 +8,7 @@ const searchNotices = async (req, res) => {
   const customSearchRequest = {};
 
   if (searchQuery) {
-    customSearchRequest.name = { $regex: searchQuery, $options: "i" };
+    customSearchRequest.title = { $regex: searchQuery, $options: "i" };
   }
 
   if (category) {
