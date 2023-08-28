@@ -1443,19 +1443,19 @@
                     "type": "string"
                   },
                   "description": "Owner's data",
-                  "example": "64e0e63c58543456a820bf03"
+                  "example": {
+                    "_id": "64ea25a007bb81eb2da674fb",
+                    "email": "adam@gmail.com",
+                    "name": "Adam",
+                    "phone": "+380953334455"
+                  }
                 },
                 "usersIds": {
                   "type": "array",
                   "items": {
                     "type": "string",
                     "description": "Id of user who added this notice in favorites",
-                    "example": {
-                      "_id": "64ea25a007bb81eb2da674fb",
-                      "email": "adam@gmail.com",
-                      "name": "Adam",
-                      "phone": "+380953334455"
-                    }
+                    "example": "dfdgvdfbg3434hjjhk5"
                   }
                 }
               }
