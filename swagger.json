@@ -294,16 +294,18 @@
       "delete": {
         "tags": ["Pets"],
         "summary": "Remove your pet",
-        "parameters": [{
-          "in": "path",
-          "name": "petId",
-          "schema": {
-            "type": "string",
-            "example": "abgf45fh459kghjk8"
-          },
-          "required": true,
-          "description": "String ID of the pet to delete"
-        }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "petId",
+            "schema": {
+              "type": "string",
+              "example": "abgf45fh459kghjk8"
+            },
+            "required": true,
+            "description": "String ID of the pet to delete"
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "requestBody": [],
         "responses": {
@@ -462,7 +464,7 @@
         "summary": "Get favorite notices",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-      "requestBody": [],
+        "requestBody": [],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -486,18 +488,20 @@
       "get": {
         "tags": ["Notices"],
         "summary": "Get notice by Id",
-        "parameters": [{
-          "in": "path",
-          "name": "noticeId",
-          "schema": {
-            "type": "string",
-            "example": "abgf45fh459kghjk8"
-          },
-          "required": true,
-          "description": "String ID of the notice to get"
-        }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "schema": {
+              "type": "string",
+              "example": "abgf45fh459kghjk8"
+            },
+            "required": true,
+            "description": "String ID of the notice to get"
+          }
+        ],
         "security": [],
-      "requestBody": [],
+        "requestBody": [],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -523,18 +527,20 @@
       "patch": {
         "tags": ["Notices"],
         "summary": "Add notice into favorites / delete notice from favorites",
-        "parameters": [{
-          "in": "path",
-          "name": "noticeId",
-          "schema": {
-            "type": "string",
-            "example": "abgf45fh459kghjk8"
-          },
-          "required": true,
-          "description": "String ID of the notice to get"
-        }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "schema": {
+              "type": "string",
+              "example": "abgf45fh459kghjk8"
+            },
+            "required": true,
+            "description": "String ID of the notice to get"
+          }
+        ],
         "security": [{ "Bearer": [] }],
-      "requestBody": [],
+        "requestBody": [],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -556,18 +562,20 @@
       "delete": {
         "tags": ["Notices"],
         "summary": "Delete own notice",
-        "parameters": [{
-          "in": "path",
-          "name": "noticeId",
-          "schema": {
-            "type": "string",
-            "example": "abgf45fh459kghjk8"
-          },
-          "required": true,
-          "description": "String ID of the notice to get"
-        }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "schema": {
+              "type": "string",
+              "example": "abgf45fh459kghjk8"
+            },
+            "required": true,
+            "description": "String ID of the notice to get"
+          }
+        ],
         "security": [{ "Bearer": [] }],
-      "requestBody": {},
+        "requestBody": {},
         "responses": {
           "204": {
             "description": "Successful operation",
@@ -589,7 +597,7 @@
       "get": {
         "tags": ["News"],
         "summary": "Get news",
-        "parameters":  [
+        "parameters": [
           {
             "name": "page",
             "in": "query",
@@ -639,7 +647,6 @@
       }
     }
   },
-
 
   "components": {
     "schemas": {
@@ -1136,9 +1143,9 @@
                 "example": "The best cat in the world"
               },
               "owner": {
-                    "type": "string",
-                    "description": "Owner's id",
-                    "example": "64e0e63c58543456a820bf03"
+                "type": "string",
+                "description": "Owner's id",
+                "example": "64e0e63c58543456a820bf03"
               },
               "_id": {
                 "type": "string",
@@ -1190,7 +1197,7 @@
             "type": "string",
             "example": "64e0e63c58543456a820bf03"
           }
-          },
+        },
         "example": {
           "message": "Delete success",
           "id": "64e0e47b52f97c596bf8fdab"
@@ -1199,7 +1206,16 @@
 
       "AddNoticeRequest": {
         "type": "object",
-        "required": ["name", "sex", "date", "type", "image", "comments", "category", "location"],
+        "required": [
+          "name",
+          "sex",
+          "date",
+          "type",
+          "image",
+          "comments",
+          "category",
+          "location"
+        ],
         "properties": {
           "category": {
             "type": "string",
@@ -1256,7 +1272,7 @@
           },
           "notice": {
             "type": "object",
-            "properties":{
+            "properties": {
               "category": {
                 "type": "string",
                 "description": "Notice category",
@@ -1315,7 +1331,7 @@
                   "example": "64e0e63c58543456a820bf03"
                 }
               },
-              "_id":{
+              "_id": {
                 "type": "string",
                 "description": "Noptice id",
                 "example": "64e485a3b58ba71467f879ea"
@@ -1422,8 +1438,11 @@
                   "example": 100
                 },
                 "owner": {
-                  "type": "string",
-                  "description": "Owner's id",
+                  "type": "object",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Owner's data",
                   "example": "64e0e63c58543456a820bf03"
                 },
                 "usersIds": {
@@ -1431,30 +1450,42 @@
                   "items": {
                     "type": "string",
                     "description": "Id of user who added this notice in favorites",
-                    "example": "dfdgvdfbg3434hjjhk5"
+                    "example": {
+                      "_id": "64ea25a007bb81eb2da674fb",
+                      "email": "adam@gmail.com",
+                      "name": "Adam",
+                      "phone": "+380953334455"
+                    }
                   }
                 }
+              }
             }
           }
-            }
         },
         "example": {
           "code": 200,
           "status": "success",
-          "notices": [{
-            "_id": "64e0e63c58543456a820bf03",
-            "category": "sell",
-            "name": "Barsik",
-            "date": "01-01-2001",
-            "type": "British Shorthair",
-            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
-            "comments": "The best cat in the world",
-            "sex": "male",
-            "location": "Kyiv",
-            "price": 100,
-            "owner": "64e0e47b52f97c596bf8fdab",
-            "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
-          }]
+          "notices": [
+            {
+              "_id": "64e0e63c58543456a820bf03",
+              "category": "sell",
+              "name": "Barsik",
+              "date": "01-01-2001",
+              "type": "British Shorthair",
+              "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+              "comments": "The best cat in the world",
+              "sex": "male",
+              "location": "Kyiv",
+              "price": 100,
+              "owner": {
+                "_id": "64ea25a007bb81eb2da674fb",
+                "email": "adam@gmail.com",
+                "name": "Adam",
+                "phone": "+380953334455"
+              },
+              "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
+            }
+          ]
         }
       },
 
@@ -1547,30 +1578,32 @@
                     "example": "dfdgvdfbg3434hjjhk5"
                   }
                 }
+              }
             }
           }
-            }
         },
         "example": {
           "code": 200,
           "status": "success",
-          "notices": [{
-            "_id": "64e0e63c58543456a820bf03",
-            "category": "sell",
-            "name": "Barsik",
-            "date": "01-01-2001",
-            "type": "British Shorthair",
-            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
-            "comments": "The best cat in the world",
-            "sex": "male",
-            "location": "Kyiv",
-            "price": 500,
-            "owner": {
-              "_id": "64e0e47b52f97c596bf8fdab",
-              "name": "Liliia"
-            },
-            "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
-          }]
+          "notices": [
+            {
+              "_id": "64e0e63c58543456a820bf03",
+              "category": "sell",
+              "name": "Barsik",
+              "date": "01-01-2001",
+              "type": "British Shorthair",
+              "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+              "comments": "The best cat in the world",
+              "sex": "male",
+              "location": "Kyiv",
+              "price": 500,
+              "owner": {
+                "_id": "64e0e47b52f97c596bf8fdab",
+                "name": "Liliia"
+              },
+              "usersIds": ["dfdvfd65567567dcvdsfvd", "safvfd65567567dcvdsfyu"]
+            }
+          ]
         }
       },
 
@@ -1670,22 +1703,24 @@
         "example": {
           "code": 200,
           "status": "success",
-          "notices": [{
-            "_id": "64e0e63c58543456a820bf03",
-            "category": "sell",
-            "name": "Barsik",
-            "date": "01-01-2001",
-            "type": "British Shorthair",
-            "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
-            "comments": "The best cat in the world",
-            "sex": "male",
-            "location": "Kyiv",
-            "price": 500,
-            "owner":  "64e0e47b52f97c596bf8fdab",
-            "usersIds": ["dfdvfd65567567dcvdsfvd", "rthvfd65567567dcvdsfva"],
-            "createdAt": "2023-08-20T05:39:29.020Z",
-            "updatedAt": "2023-08-22T11:01:55.822Z"
-          }]
+          "notices": [
+            {
+              "_id": "64e0e63c58543456a820bf03",
+              "category": "sell",
+              "name": "Barsik",
+              "date": "01-01-2001",
+              "type": "British Shorthair",
+              "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
+              "comments": "The best cat in the world",
+              "sex": "male",
+              "location": "Kyiv",
+              "price": 500,
+              "owner": "64e0e47b52f97c596bf8fdab",
+              "usersIds": ["dfdvfd65567567dcvdsfvd", "rthvfd65567567dcvdsfva"],
+              "createdAt": "2023-08-20T05:39:29.020Z",
+              "updatedAt": "2023-08-22T11:01:55.822Z"
+            }
+          ]
         }
       },
 
@@ -1702,7 +1737,7 @@
           },
           "notice": {
             "type": "object",
-            "properties":{
+            "properties": {
               "_id": {
                 "type": "string",
                 "description": "Notice Id",
@@ -1776,7 +1811,7 @@
                 "description": "Date of notice update",
                 "example": "2023-08-20T06:45:40.393Z"
               }
-            }  
+            }
           }
         },
         "example": {
@@ -1812,7 +1847,7 @@
             "type": "string",
             "example": "success"
           }
-          },
+        },
         "example": {
           "message": "Success operation"
         }
@@ -1829,14 +1864,13 @@
             "type": "string",
             "example": "Success operation"
           }
-          },
+        },
         "example": {
           "message": "Notice is deleted"
         }
       }
     },
 
-    
     "securitySchemes": {
       "Bearer": {
         "type": "http",
