@@ -2,7 +2,8 @@
 const { Pet } = require("../../models/pet");
 
 const current = async (req, res) => {
-  const { email, name, phone, city, birthday, avatarURL, favorite } = req.user;
+  const { _id, email, name, phone, city, birthday, avatarURL, favorite } =
+    req.user;
   const { _id: owner } = req.user;
 
   const ownerID = { owner };
@@ -16,6 +17,7 @@ const current = async (req, res) => {
     code: 200,
     status: "success",
     user: {
+      id: _id,
       name,
       email,
       phone,

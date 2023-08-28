@@ -24,6 +24,7 @@ const update = async (req, res) => {
     code: 200,
     status: "success",
     user: {
+      id: _id,
       name: updateData.name,
       email: updateData.email,
       phone: updateData.phone,

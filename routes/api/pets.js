@@ -7,7 +7,7 @@ const {
   authenticate,
   validateBody,
   upload,
-  isValidId,
+  isValidPetId,
 } = require("../../middlewares");
 
 // Add pet by authorized user endpoint
@@ -20,6 +20,6 @@ router.post(
 );
 
 // Delete pet by authorized user endpoint
-router.delete("/:petId", authenticate, isValidId, ctrl.removePet);
+router.delete("/:petId", authenticate, isValidPetId, ctrl.removePet);
 
 module.exports = router;

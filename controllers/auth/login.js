@@ -32,6 +32,7 @@ const login = async (req, res) => {
     status: "success",
     token,
     user: {
+      id: user._id,
       email: user.email,
       name: user.name,
       phone: user.phone,
