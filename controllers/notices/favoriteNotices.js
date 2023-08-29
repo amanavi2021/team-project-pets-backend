@@ -1,47 +1,47 @@
-const { User } = require('../../models/user');
-const { Notice } = require('../../models/notice');
-
+const { User } = require("../../models/user");
+const { Notice } = require("../../models/notice");
 
 const favoriteNotices = async (req, res) => {
+  const { noticeId } = req.params;
+  const { _id } = req.user;
 
-    const { noticeId } = req.params;
-    const { _id } = req.user;
+  const user = await User.findById(_id);
+  // is current notice in favorite notices
+  const isNotice = user.favorite.find((id) => id.toString() === noticeId);
 
-    const user = await User.findById(_id);
-// is current notice in favorite notices
-    const isNotice = user.favorite.find((id) => id.toString() === noticeId);
-  
-    if (isNotice) { // delete from favorite
-        
-        user.favorite = user.favorite.filter(notice => notice.toString() !== noticeId);
+  if (isNotice) {
+    // delete from favorite
 
-        await user.save();
+    user.favorite = user.favorite.filter(
+      (notice) => notice.toString() !== noticeId
+    );
 
-        const notice = await Notice.findById(noticeId);
-        
-        notice.userIds = notice.userIds.find((userId) => userId.toString() !== _id);
-        
-        await notice.save();
+    await user.save();
 
-    } else {  // add into favorite
-        user.favorite.push(noticeId);
+    const notice = await Notice.findById(noticeId);
 
-        await user.save();
+    notice.userIds = notice.userIds.find((userId) => userId.toString() !== _id);
 
-        const notice = await Notice.findById(noticeId);
-        
-        notice.userIds.push(_id);
+    await notice.save();
+  } else {
+    // add into favorite
+    user.favorite.push(noticeId);
 
-        await notice.save();
-    };
+    await user.save();
 
+    const notice = await Notice.findById(noticeId);
 
-    res.status(200).json({
-        code: 200,
-        status: 'success',
-        message: "Success operation"
-    });
+    notice.userIds.push(_id);
+
+    await notice.save();
+  }
+
+  res.status(200).json({
+    code: 200,
+    status: "success",
+    message: "Success operation",
+    id: noticeId,
+  });
 };
-
 
 module.exports = favoriteNotices;
