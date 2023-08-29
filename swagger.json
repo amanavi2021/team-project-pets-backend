@@ -1877,7 +1877,7 @@
               "title": {
                 "type": "string",
                 "description": "Notice title",
-                "example": "Сute dog looking for a home"
+                "example": "Super dog looking for a home"
               },
               "name": {
                 "type": "string",
