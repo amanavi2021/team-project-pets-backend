@@ -37,12 +37,14 @@ const favoriteNotices = async (req, res) => {
   }
 
   const notices = await Notice.find({}, "-createdAt -updatedAt");
+  const notice = await Notice.findById(noticeId);
 
   res.status(200).json({
     code: 200,
     status: "success",
     message: "Success operation",
     id: noticeId,
+    notice,
     notices,
     user,
   });
