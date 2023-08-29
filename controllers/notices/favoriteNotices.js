@@ -36,7 +36,12 @@ const favoriteNotices = async (req, res) => {
     await notice.save();
   }
 
-  const notices = await Notice.find({}, "-createdAt -updatedAt");
+  const currentNotice = await Notice.findById(noticeId);
+
+  const notices = await Notice.find(
+    currentNotice.category,
+    "-createdAt -updatedAt"
+  );
 
   res.status(200).json({
     code: 200,
@@ -44,6 +49,7 @@ const favoriteNotices = async (req, res) => {
     message: "Success operation",
     id: noticeId,
     notices,
+    user,
   });
 };
 
