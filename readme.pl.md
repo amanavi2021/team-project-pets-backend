@@ -11,7 +11,7 @@ _______________________
 - [Frontend GH Pages](https://sig1smund.github.io/final-fullstack-team-proj/)
 - [Frontend source](https://github.com/Sig1smund/final-fullstack-team-proj)
 
-Backend do aplikacji znajdowania, sprzedawania i przekazywania zwierząt domowych. Nieupoważnieni użytkownicy mogą wyszukiwać ogłoszenia o zwierzętach, autoryzowani użytkownicy mogą dodawać/usuwać ogłoszenia, dodawać ogłoszenia do ulubionych, dodawać/usuwać informacje o swoich zwierzętach.
+Backend aplikacji umożliwiającej wyszukiwanie, przeglądanie ogłoszeń dotyczących sprzedaży zwierząt domowych dla użytkowników typu gość. Natomiast użytkownicy zalogowani mogą dodawać i usuwać ogłoszenia lub informacje o swoim zwierzęciu oraz dodawać ogłoszenia do ulubionych.
 
 _____________________
 
@@ -20,11 +20,11 @@ _____________________
 - `npm start` &mdash; uruchamia serwer w trybie produkcyjnym
 - `npm run start:dev` &mdash; uruchamia serwer w trybie deweloperskim (development)
 
-## Zalety
+## Funkcje aplikacji
 
 - Odnowienie tokena bez konieczności ponownej autoryzacji.
 - Aktualizacja informacji o użytkowniku i awatara.
-- Poszukiwania ogłoszenia według słowa kluczowego w tytule i kategorii.
+- Wyszukiwania ogłoszeń przy użyciu słowa kluczowego w tytule i kategorii.
 - Dodanie ogłoszenia do ulubionych
 
 ## Prawo autorskie

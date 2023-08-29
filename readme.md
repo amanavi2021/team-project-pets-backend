@@ -22,10 +22,10 @@ _____________________
 
 ## Features
 
-- Refresh tocken without relogin
+- Refresh token without re-login
 - Update user's data and avatar
 - Search notices by title keyword and category
-- Add nocite to favorite notices
+- Add notice to favorite notices
 
 ## License
 
