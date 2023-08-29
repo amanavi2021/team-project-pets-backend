@@ -1207,6 +1207,7 @@
       "AddNoticeRequest": {
         "type": "object",
         "required": [
+          "title",
           "name",
           "sex",
           "date",
@@ -1217,6 +1218,11 @@
           "location"
         ],
         "properties": {
+          "title": {
+            "type": "string",
+            "description": "Notice title",
+            "example": "A beautiful cat looking for a good hand"
+          },
           "category": {
             "type": "string",
             "description": "Notice category: [sell lost-found in-good-hands]"
