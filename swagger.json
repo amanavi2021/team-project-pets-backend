@@ -1388,6 +1388,10 @@
             "type": "string",
             "example": "success"
           },
+          "total": {
+            "type": "integer",
+            "example": 50
+          },
           "notices": {
             "type": "array",
             "items": {
@@ -1471,6 +1475,7 @@
         "example": {
           "code": 200,
           "status": "success",
+          "total": 50,
           "notices": [
             {
               "_id": "64e0e63c58543456a820bf03",
@@ -1963,10 +1968,7 @@
             "location": "Lviv",
             "price": 1,
             "owner": "64ea25a007bb81eb2da674fb",
-            "userIds": [
-              "64ea25a007bb81eb2da674fb",
-              "64eb33f5f299cc1ba526c17a"
-            ],
+            "userIds": ["64ea25a007bb81eb2da674fb", "64eb33f5f299cc1ba526c17a"],
             "createdAt": "2023-08-28T09:57:01.112Z",
             "updatedAt": "2023-08-29T15:06:06.333Z"
           }
