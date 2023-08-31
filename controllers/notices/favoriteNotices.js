@@ -11,18 +11,16 @@ const favoriteNotices = async (req, res) => {
 
   if (isNotice) {
     // delete from favorite
-
-    user.favorite = user.favorite.filter(
-      (notice) => notice.toString() !== noticeId
-    );
+    console.log("favorite before", user.favorite);
+    user.favorite = user.favorite.filter((notice) => notice.toString() !== noticeId);
+    console.log("favorite", user.favorite);
 
     await user.save();
 
-    const notice = await Notice.findById(noticeId);
-
-    notice.userIds = notice.userIds.find((userId) => userId.toString() !== _id);
-
-    await notice.save();
+    await Notice.findByIdAndUpdate(noticeId, {
+      $pull: { userIds: _id }
+    });
+   
   } else {
     // add into favorite
     user.favorite.push(noticeId);
