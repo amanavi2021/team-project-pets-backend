@@ -15,6 +15,8 @@ const searchNotices = async (req, res) => {
     customSearchRequest.category = category;
   }
 
+  const total = await Notice.countDocuments(customSearchRequest);
+
   const result = await Notice.find(
     customSearchRequest,
     "-createdAt -updatedAt",
@@ -28,6 +30,7 @@ const searchNotices = async (req, res) => {
   res.status(200).json({
     code: 200,
     status: "success",
+    total,
     notices: result,
   });
 };
