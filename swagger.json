@@ -577,16 +577,18 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {
-          "204": {
+          "200": {
             "description": "Successful operation",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOwnNoticeResponse"
+                }
+              }
+            }
           },
           "401": {
             "description": "Not authorized",
-            "content": {}
-          },
-          "404": {
-            "description": "Not found",
             "content": {}
           }
         }
@@ -771,6 +773,11 @@
           "user": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's Id",
+                "example": "ffgh434gfvghbhjnj3454"
+              },
               "email": {
                 "type": "string",
                 "description": "User's email",
@@ -800,6 +807,14 @@
                 "type": "string",
                 "description": "User's avatar",
                 "example": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+              },
+              "favorite": {
+                "type": "array",
+                "items": {
+                  "type":"string",
+                  "description": "favorite notice Id",
+                  "example": "dgh43454657gvghbjnj"
+                }
               }
             }
           }
@@ -809,12 +824,14 @@
           "status": "success",
           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTEzMzBjNThjZWQ1MGMyNGMzOTc3MCIsImlhdCI6MTY5MjQ4MDI2OCwiZXhwIjoxNjkyNDg3NDY4fQ.0Ta0Sifp6OCUeO_Z3LChCCmbrTJjCXmlK_XoNRavwr2",
           "user": {
+            "id": "dghg4565676gfhghjh676",
             "email": "liliia@gmail.com",
             "name": "Liliia",
             "phone": "+380661234567",
             "city": "Kyiv",
             "birthday": "01-01-2001",
-            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b"
+            "avatarUrl": "//www.gravatar.com/avatar/6b15a399b245e38e38f3d511b5e3c87b",
+            "favorite": ["fdfdbfgbgfbnfg3434543df"]
           }
         }
       },
@@ -868,6 +885,11 @@
           "user": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's Id",
+                "example": "ffgh434gfvghbhjnj3454"
+              },
               "name": {
                 "type": "string",
                 "description": "User's name",
@@ -905,6 +927,7 @@
           "code": 200,
           "status": "success",
           "user": {
+            "id": "dghg4565676gfhghjh676",
             "name": "Liliia",
             "email": "liliia@gmail.com",
             "phone": "+380661234567",
@@ -952,6 +975,11 @@
           "user": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's Id",
+                "example": "ghb465677gbvbhnb564656hgy"
+              },
               "name": {
                 "type": "string",
                 "description": "User's name",
@@ -1050,6 +1078,7 @@
           "code": 200,
           "status": "success",
           "user": {
+            "id": "fgcghbh465676gvbbn6567687",
             "name": "Liliia",
             "email": "liliia@gmail.com",
             "phone": "+380661234567",
@@ -1102,7 +1131,6 @@
           }
         }
       },
-
       "CreatePetsResponse": {
         "type": "object",
         "properties": {
@@ -1170,7 +1198,7 @@
           "status": "success",
           "pet": {
             "name": "Barsik",
-            "date": "01.01.2001",
+            "date": "01-01-2001",
             "type": "British Shorthair",
             "imageURL": "https://res.cloudinary.com/amanavi2021/image/upload/v1692460605/pets/cw4optpgwhpowjd7zlw1.jpg",
             "comments": "The best cat in the world",
@@ -1279,6 +1307,11 @@
           "notice": {
             "type": "object",
             "properties": {
+              "title": {
+                "type": "string",
+                "description": "Notice title",
+                "example": "A nice cat looking for a good hands"
+              },
               "category": {
                 "type": "string",
                 "description": "Notice category",
@@ -1359,6 +1392,7 @@
           "code": 201,
           "status": "success",
           "notice": {
+            "title": "A nice cat looking for a good hands",
             "category": "sell",
             "name": "Marsik",
             "date": "01-01-2001",
@@ -1526,6 +1560,11 @@
                   "description": "Notice category",
                   "example": "sell"
                 },
+                "title": {
+                  "type": "string",
+                  "description": "Notice title",
+                  "example": "A beautiful cat looking for a good hand"
+                },
                 "name": {
                   "type": "string",
                   "description": "Pet's name",
@@ -1600,6 +1639,7 @@
             {
               "_id": "64e0e63c58543456a820bf03",
               "category": "sell",
+              "title": "A beautiful cat looking for a good hand",
               "name": "Barsik",
               "date": "01-01-2001",
               "type": "British Shorthair",
@@ -1641,8 +1681,13 @@
                 },
                 "category": {
                   "type": "string",
-                  "description": "Notece category",
+                  "description": "Notice category",
                   "example": "sell"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Notice title",
+                  "example": "A beautiful cat looking for a good hand"
                 },
                 "name": {
                   "type": "string",
@@ -1718,6 +1763,7 @@
             {
               "_id": "64e0e63c58543456a820bf03",
               "category": "sell",
+              "title": "A beautiful cat looking for a good hand",
               "name": "Barsik",
               "date": "01-01-2001",
               "type": "British Shorthair",
@@ -1759,6 +1805,11 @@
                 "description": "Notice category",
                 "example": "sell"
               },
+              "title": {
+                  "type": "string",
+                  "description": "Notice title",
+                  "example": "A beautiful cat looking for a good hand"
+                },
               "name": {
                 "type": "string",
                 "description": "Pet's name",
@@ -1831,6 +1882,7 @@
           "notice": {
             "_id": "64e1a88b3cab012b6eb44483",
             "category": "sell",
+            "title": "A beautiful cat looking for a good hand",
             "name": "Marsik",
             "date": "01-01-2001",
             "type": "cat",
@@ -1978,17 +2030,19 @@
       "DeleteOwnNoticeResponse": {
         "type": "object",
         "properties": {
-          "code": {
-            "type": "integer",
-            "example": 204
-          },
-          "status": {
+          "message": {
             "type": "string",
-            "example": "Success operation"
+            "example": "Notice deleted"
+          },
+          "id": {
+            "type": "string",
+            "description": "deleted notice Id",
+            "example": "ghfghjgjhj4365757fg"
           }
         },
         "example": {
-          "message": "Notice is deleted"
+          "message": "Notice deleted",
+          "id": "64e0e47b52f97c596bf8fdab"
         }
       }
     },
