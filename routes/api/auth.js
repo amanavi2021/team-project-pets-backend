@@ -19,7 +19,7 @@ router.post("/logout", authenticate, ctrl.logout);
 router.get('/refresh', ctrl.refresh);
 
 // Update user data endpoint 
-router.patch('/update', authenticate, validateBody(schemas.updateSchema), upload.single('avatarURL'), ctrl.update);
+router.patch('/update', authenticate, upload.single('avatarURL'), validateBody(schemas.updateSchema),  ctrl.update);
 
 // Get current user data endpoint 
 router.get("/current", authenticate, ctrl.current);
