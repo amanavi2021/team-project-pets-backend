@@ -10,13 +10,13 @@ const login = async (req, res) => {
 
   if (!user) {
     throw HttpError(409, "User with this email not found");
-  }
+  };
 
-  const passwordCompare = bcrypt.compare(password, user.password);
+  const passwordCompare = bcrypt.compareSync(password, user.password);
 
   if (!passwordCompare) {
     throw HttpError(401, "Email or password is wrong");
-  }
+  };
 
   const { token, refreshToken } = await tokens(user._id);
 
