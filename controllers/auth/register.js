@@ -1,55 +1,53 @@
-const bcrypt = require('bcrypt');
-const gravatar = require('gravatar');
+const bcrypt = require("bcrypt");
+// const gravatar = require("gravatar");
 
-const { User } = require('../../models/user');
-const { tokens } = require('../../helpers/tokens');
-const { HttpError} = require('../../helpers');
-
+const { User } = require("../../models/user");
+const { tokens } = require("../../helpers/tokens");
+const { HttpError } = require("../../helpers");
 
 const register = async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    
-    if (user) {
-        throw HttpError(409, "Email in use");
-    };
+  const user = await User.findOne({ email });
 
-    const hashPassword = bcrypt.hashSync(password, 10);
-    
-    const avatarURL = gravatar.url(email);
+  if (user) {
+    throw HttpError(409, "Email in use");
+  }
 
-    const newUser = await User.create({
-        ...req.body,
-        password: hashPassword,
-        avatarURL,
-    });
-    
-    const { token, refreshToken } = await tokens(newUser._id);
+  const hashPassword = bcrypt.hashSync(password, 10);
+  //  at first avatar must be empty
+  //   const avatarURL = gravatar.url(email);
 
-    await User.findByIdAndUpdate(newUser._id, { token, refreshToken });
+  const newUser = await User.create({
+    ...req.body,
+    password: hashPassword,
+    // avatarURL,
+  });
 
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-    });
+  const { token, refreshToken } = await tokens(newUser._id);
 
-    res.status(201).json({
-        code: 201,
-        status: "success",
-        token,
-        user: {
-            email: newUser.email,
-            name: newUser.name,
-            phone: newUser.phone,
-            city: newUser.city,
-            birthday: newUser.birthday,
-            avatarURL: newUser.avatarURL,
-        },
-    });
+  await User.findByIdAndUpdate(newUser._id, { token, refreshToken });
+
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
+
+  res.status(201).json({
+    code: 201,
+    status: "success",
+    token,
+    user: {
+      email: newUser.email,
+      name: newUser.name,
+      phone: newUser.phone,
+      city: newUser.city,
+      birthday: newUser.birthday,
+      avatarURL: newUser.avatarURL,
+    },
+  });
 };
-
 
 module.exports = register;
